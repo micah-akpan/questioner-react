@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FormInputField = props => (
-  <input {...props} className={{ ...props.classes }} />
+  <input {...props} className={props.classes} />
 );
 
 FormInputField.propTypes = {
@@ -11,7 +11,9 @@ FormInputField.propTypes = {
   type: PropTypes.string,
   value: PropTypes.string,
   handleTextChange: PropTypes.func,
-  classes: PropTypes.string
+  classes: PropTypes.string,
+  id: PropTypes.string,
+  required: PropTypes.bool
 };
 
 export default FormInputField;
