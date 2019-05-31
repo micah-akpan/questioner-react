@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { render } from 'react-testing-library';
+import { render } from '@testing-library/react';
 import HomePage from '../Index';
 
 describe('HomePage Component', () => {
