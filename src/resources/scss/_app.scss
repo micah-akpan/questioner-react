@@ -135,6 +135,12 @@ html {
       .header-content {
         display: flex;
       }
+
+      nav {
+        span {
+          color: #fff;
+        }
+      }
     }
 
     .nav-block__link {
@@ -220,6 +226,18 @@ html {
 
         span {
           margin-right: 5px;
+
+          & + li {
+
+            a {
+              text-transform: uppercase;
+              color: #fff;
+
+              &:hover {
+                color: #ffcb9a;
+              }
+            }
+          }
         }
       }
     }
