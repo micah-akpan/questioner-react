@@ -3,63 +3,43 @@
   font-family: "Aleo", serif;
 }
 
-#questioner-what .questioner-what__text {
-  text-align : center;
-  font-size  : 1.5em;
-  font-weight: 700;
-  padding    : 1em;
-}
-
-#questioner-what .cards .q-card,
-#questioner-how .cards .q-card {
-  box-shadow: none;
-}
-
 /* Right Nav */
-.q-right-nav a {
-  padding      : 0.5rem;
-  border-radius: 5px;
-}
+.q-right-nav {
+  a {
+    padding      : 0.5rem;
+    border-radius: 5px;
+  }
 
-/* Right Nav Buttons */
-.q-right-nav .sign-in,
-.q-right-nav .sign-up {
-  transition: border 0.2s ease;
-}
+  .sign-in,
+  .sign-up {
+    text-transform: uppercase;
+  }
 
+  /* Right Nav Buttons */
+  .sign-up {
+    transition: border 0.2s ease;
+    border    : none;
+    background: #ffcb9a;
+    color     : #116466;
 
-.q-right-nav .sign-in {
-  border      : 1px solid #ffcb9a;
-  text-align  : center;
-  margin-right: 10px;
-  color       : #ffcb9a;
-}
+    &:hover {
+      background: transparent;
+      border    : 1px solid #ffcb9a;
+      color     : #ffcb9a;
+    }
+  }
 
-.q-right-nav .sign-in:hover {
-  background-color: #ffcb9a;
-  color           : #116466;
-}
+  .sign-in {
+    border      : 1px solid #ffcb9a;
+    text-align  : center;
+    margin-right: 10px;
+    color       : #ffcb9a;
 
-.q-right-nav .sign-up {
-  border    : none;
-  background: #ffcb9a;
-  color     : #116466;
-}
-
-.q-right-nav .sign-up:hover {
-  background: transparent;
-  border    : 1px solid #ffcb9a;
-  color     : #ffcb9a;
-}
-
-.q-showcase {
-  width     : 100%;
-  height    : 400px;
-  max-height: 400px;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-    url("../images/showcase2.jpg") center/cover no-repeat;
-  margin-top: 70px;
-  padding   : 0 0 100px 0;
+    &:hover {
+      background-color: #ffcb9a;
+      color           : $light-forest-green;
+    }
+  }
 }
 
 .q-showcase {
@@ -110,83 +90,83 @@
 /* General styling for cards */
 
 .cards {
-  margin: 20px auto;
-  width : 100%;
-}
+  margin   : 20px auto;
+  width    : 100%;
+  display  : flex;
+  flex-wrap: wrap;
 
-.cards .q-card {
-  margin-right : 20px;
-  height       : 300px;
-  max-height   : 300px;
-  border       : 1px solid #596377;
-  border-radius: 3px;
-  cursor       : pointer;
-  transition   : box-shadow 0.3s ease;
-}
+  .q-card {
+    width         : calc(100% / 3 - 20px);
+    flex          : 0 1 auto;
+    margin-right  : 20px;
+    border        : 1px solid #596377;
+    border-radius : 3px;
+    cursor        : pointer;
+    transition    : box-shadow 0.3s ease;
+    padding-bottom: 10px;
 
-.cards .q-card__no-border {
-  border: none;
-}
+    .q-card__primary {
+      width        : 100%;
+      height       : 200px;
+      border-bottom: 1px solid #116466;
+    }
 
-/* Cards main content */
-.q-card .q-card__primary {
-  width        : 100%;
-  height       : 200px;
-  border-bottom: 1px solid #116466;
-}
+    .q-card__image-container {
+      max-width: 100%;
+      position : relative;
 
-.q-card .q-card__primary .content {
-  max-width: 100%;
-  position : relative;
-}
+      img {
+        width : 100% !important;
+        height: 200px;
+      }
+    }
 
-.q-card__primary .content img {
-  width : 100%;
-  height: 200px;
-}
+    .q-card__bottom {
+      width: 100%;
 
-.q-card__primary .content .meetup-details {
-  width  : 100%;
-  display: flex;
-}
+      .meetup-details {
+        display: flex;
+        width  : 100%;
 
-.q-card__primary .meetup-details .meetup-details__sec {
-  text-align: center;
-  width     : 20%;
-}
+        .meetup-details__primary {
+          width      : 80%;
+          margin-left: 20px;
 
-.q-card__primary .meetup-details__sec .date__sec_month {
-  color     : #116466;
-  padding   : 0;
-  margin-top: 5px;
-}
+          h3 {
+            font-size     : 1em;
+            text-align    : left;
+            margin        : 10px 0 0;
+            text-transform: capitalize;
+          }
+        }
 
-.q-card__primary .meetup-details__sec .date__sec_date {
-  color: #596377;
-}
+        .meetup-details__sec {
+          text-align: center;
+          width     : 20%;
+        }
+      }
+    }
+  }
 
-.q-card__primary .meetup-details .meetup-details__primary {
-  width      : 80%;
-  margin-left: 20px;
-}
+  .q-card__top {
+    width        : 100%;
+    height       : 200px;
+    border-bottom: 1px solid #116466;
+    cursor       : pointer;
 
-.q-card__primary .content .meetup-details span {
-  display: block;
-}
+    .q-asked-count {
+      position : absolute;
+      top      : 10px;
+      left     : 10px;
+      color    : #ffffff;
+      font-size: 2rem;
+      cursor   : pointer;
+    }
+  }
 
-.q-card__primary .content .meetup-details h3 {
-  margin    : 0;
-  margin-top: 5px;
-  text-align: left !important;
-}
-
-.q-card__primary .content .q-asked-count {
-  position : absolute;
-  top      : 10px;
-  left     : 10px;
-  color    : #ffffff;
-  font-size: 2rem;
-  cursor   : pointer;
+  .q-card__no-border {
+    border: none;
+  }
 }
 
 .q-card .q-card__sec .meetup-title {
@@ -212,25 +192,26 @@
   margin : 0 auto 20px auto;
 }
 
-#q-cards h3,
-.q-how-question-works h3 {
-  text-align: center;
+.q-cards {
+  h3 {
+    text-align: center;
+    font-size : 3em;
+  }
 }
 
 .q-cards__more,
-.get-started-btn {
-  color           : #333333;
-  /* color        : #116466; */
+.get-started__btn {
+  color           : #333333 !important;
   display         : block;
   border          : none;
   padding         : 1rem;
   cursor          : pointer;
   margin          : 0 auto;
-  background-color: #ffcb9a;
+  background-color: #ffcb9a !important;
   font-weight     : bold;
 }
 
-.get-started-btn {
+.get-started__btn {
   text-align: center;
   width     : 30%;
 }
@@ -241,13 +222,31 @@
   transform: background-color 0.3s;
 }
 
-.get-started-btn:hover,
+.get-started__btn:hover,
 .q-cards__more:hover {
   background-color: #f7b77c;
 }
 
-.get-started-btn:active {
+.get-started__btn:active {
   background-color: #ffcb9a;
+}
+
+.questioner-what .questioner-what__text {
+  text-align: center;
+  padding   : 1em;
+}
+
+.questioner-what .cards .q-card,
+.questioner-how .cards .q-card {
+  box-shadow: none;
+}
+
+.questioner-how {}
+
+.get-started {
+  .get-started__msg {
+    font-size: 2.5em;
+  }
 }
 
 /* Mobile Devices */
@@ -270,12 +269,23 @@
   .q-showcase a[role="button"] {
     width: 90%;
   }
+
+  .get-started {
+    .get-started__msg {
+      font-size: 2em;
+    }
+  }
 }
 
 /* Tablets */
-@media (max-width: 992px) {
+@media (max-width: 992px) and (min-width: 768px) {
   .cards {
-    display: block;
+    display: flex;
+  }
+
+  .cards .q-card {
+    width: calc(100% / 2);
+    flex : 1 1 auto;
   }
 
   .cards .q-card {
@@ -285,7 +295,19 @@
   .q-showcase h2 {
     margin: calc(300px / 2) auto 0 auto;
   }
+
+  .q-showcase a[role="button"] {
+    width: 50%;
+  }
 }
+
+
+@media (min-width: 993px) and (max-width: 1012px) {
+  .q-showcase a[role="button"] {
+    width: 50%;
+  }
+}
+
 
 /* Laptop and Desktop Viewport */
 @media (min-width: 992px) {
@@ -294,7 +316,6 @@
   }
 
   .cards .q-card {
-    flex         : 1 1 calc(100% / 3 - 20px);
     margin-bottom: 20px;
   }
 }

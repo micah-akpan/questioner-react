@@ -23,7 +23,7 @@ export const getMeetupsFailure = error => ({
 export const getMeetups = () => async dispatch => {
   try {
     dispatch(getMeetupsRequest);
-    const data = await fetchAllMeetups();
+    const { data } = await fetchAllMeetups();
     dispatch(getMeetupsSuccess(data));
   } catch (ex) {
     dispatch(getMeetupsFailure(ex));

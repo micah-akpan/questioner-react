@@ -1,7 +1,8 @@
 /* Base css stylesheet
    Contains global styles, common to every page
 */
-// @import url("https ://fonts.googleapis.com/css?family=Aleo|Marck+Script|Roboto");
+@import url("https://fonts.googleapis.com/css?family=Aleo|Marck+Script|Roboto");
+
 $white-hex            : #fff;
 $dark-forest-green    : #07504c;
 $light-forest-green   : #116466;
@@ -195,7 +196,7 @@ html {
     /* Left Nav */
     .q-left-nav {
       flex: 1 1 100%;
-      margin: 2.1em 0;
+      margin: 2em 0;
     }
 
     .q-left-nav__list__item {

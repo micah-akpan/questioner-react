@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import Card from './shared/Card';
 import CardTop from './shared/CardTop';
 import CardBottom from './shared/CardBottom';
+import image from '../resources/images/startup-meetup2.jpg';
 
 const UpcomingMeetupCard = ({ meetup }) => (
-  <Card>
+  <Card classList={['q-card q-card__no-border']}>
     <CardTop>
       <div className="q-card__image-container">
         <img
-          src={meetup.images[0]}
+          src={image}
           alt="A meetup"
           className="q-card__image"
         />
@@ -25,7 +26,7 @@ const UpcomingMeetupCard = ({ meetup }) => (
         </div>
 
         <div className="meetup-details__primary">
-          <h3 className="title">{meetup.topic}</h3>
+          <h3 className="title">{meetup.title}</h3>
           <span className="place">{meetup.location}</span>
           <span className="date__primary">{meetup.createdAt}</span>
         </div>
