@@ -11,12 +11,14 @@ const links = [
   {
     id: '1',
     title: 'login',
-    url: '/login'
+    url: '/login',
+    className: 'sign-in'
   },
   {
     id: '2',
     title: 'sign up',
-    url: '/signup'
+    url: '/signup',
+    className: 'sign-up'
   }
 ];
 

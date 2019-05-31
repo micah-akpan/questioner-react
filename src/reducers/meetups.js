@@ -5,7 +5,7 @@ import {
 } from '../actionTypes/meetups';
 
 const initialState = {
-  meetups: [],
+  data: [],
   error: null,
   requesting: false
 };
@@ -23,7 +23,7 @@ export default (state = initialState, { type, payload }) => {
       return {
         ...state,
         requesting: false,
-        meetups: payload,
+        data: payload,
         error: null
       };
     }

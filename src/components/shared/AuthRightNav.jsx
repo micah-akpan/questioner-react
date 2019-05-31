@@ -6,7 +6,7 @@ const AuthRightNavBar = ({ links, classList }) => (
   <ul>
     {links.map((link, i) => (
       <li key={link.id}>
-        <Link to={link.url} role="button" aria-label={`${link.title} button`} className="main-nav-block__link">{link.title}</Link>
+        <Link to={link.url} role="button" aria-label={`${link.title} button`} className={link.className}>{link.title}</Link>
       </li>
     ))}
   </ul>
