@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FormButton = ({ text, classList }) => (
+const FormButton = ({ children, classList, disabled }) => (
   <button
     type="submit"
     className={classList}
+    disabled={disabled}
   >
-    {text}
+    {children}
   </button>
 );
 
 FormButton.propTypes = {
-  text: PropTypes.string,
+  children: PropTypes.node,
   classList: PropTypes.string
 };
 

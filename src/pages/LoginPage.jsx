@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { Fragment, useState, useCallback } from 'react';
+import React, { Fragment, useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import RightNav from '../components/shared/RightNav';
@@ -14,21 +14,48 @@ import {
 } from '../components/shared';
 import Footer from '../components/shared/Footer';
 import { signInUser } from '../actions/auth';
+import Validator from 'validatorjs';
 
 const { addClasses } = appUtil;
+
+const rules = {
+  email: 'required|email',
+  password: 'required|min:8'
+};
 
 const LoginPage = (props) => {
   const [passwordIsVisible, setPasswordVisibility] = useState(false);
   const [userData, setUserData] = useState({ email: '', password: '' });
+  const [validationErrors, setValidationErrors] = useState({ email: null, password: null });
 
   const handleTextChange = evt => {
     const { name, value } = evt.target;
     setUserData({ ...userData, [name]: value });
+    const validation = new Validator(userData, rules);
+    setValidationErrors({
+      ...validationErrors,
+      [name]: validation.errors.first(name)
+    });
   }
+  useEffect(() => {
+    if (props.user.data) {
+      localStorage.setItem('authToken', props.user.data.token)
+    }
+  }, [props.user.data])
 
   const handleFormSubmit = evt => {
     evt.preventDefault();
-    props.signInUser(userData);
+    const validation = new Validator(userData, rules);
+    if (validation.passes()) {
+      props.signInUser(userData);
+    } else {
+      const emailValidationError = validation.errors.first('email');
+      const passwordValidationError = validation.errors.first('password');
+      setValidationErrors({
+        email: emailValidationError,
+        password: passwordValidationError
+      });
+    }
   };
 
   const { email, password } = userData;
@@ -41,7 +68,7 @@ const LoginPage = (props) => {
               <ul className="auth-pages-nav_link">
                 <span>Not Registered yet?
                   <li>
-                    <Link to="/">Sign Up</Link>
+                    <Link to="/signup">Sign Up</Link>
                   </li>
                 </span>
               </ul>
@@ -59,7 +86,7 @@ const LoginPage = (props) => {
               <FormLabel idText="userEmail" className="q-form__label" labelText="Email" />
               <FormInputField
                 name="email"
-                type="text"
+                type="text" // email type is overridden here to provide a better validation error
                 placeholder="dennisritchie@email.com"
                 id="userEmail"
                 classes={addClasses(['q-form__input'])}
@@ -67,7 +94,9 @@ const LoginPage = (props) => {
                 value={email}
                 required
               />
-              <span className="input-validation-feedback">Must be a valid email address</span>
+              <span className="input-validation-feedback email-validation">
+                {validationErrors.email}
+              </span>
             </FormGroup>
             <FormGroup classList={addClasses(['q-form__group', 'password-input'])}>
               <FormLabel idText="userPwd" className="q-form__label" labelText="Password">
@@ -99,8 +128,7 @@ const LoginPage = (props) => {
               <span
                 className="input-validation-feedback"
               >
-                Your Password must be at least 8 characters,
-                as well as contain one uppercase, one lowercase and one number
+                {validationErrors.password}
               </span>
               <span id="forgot-pwd">
                 <a href="./reset-password.html">
@@ -109,9 +137,14 @@ const LoginPage = (props) => {
               </span>
             </FormGroup>
             <FormButton
-              text="Login"
-              classList={addClasses(['q-form__button', 'q-large__button'])}
-            />
+              classList={addClasses([
+                'q-form__button', 'q-large__button',
+                props.user.requesting && 'default_pointer'
+              ])}
+              disabled={props.user.requesting}>
+              Login
+                <span className={`${props.user.requesting ? 'loader' : ''}`}></span>
+            </FormButton>
           </Form>
           <div className="social-media__links--option-rule">
             <span className="social-media__links--signup-option">OR</span>

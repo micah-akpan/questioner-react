@@ -28,7 +28,7 @@ const SignUpPage = (props) => {
   const handleFormSubmit = (evt) => {
     evt.preventDefault();
     props.signUpUser(userData);
-    const { requesting, error, data } = props.user;
+    const { requesting, error } = props.user;
     if (!requesting && !error) {
       props.history.push('/meetups');
     }
