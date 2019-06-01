@@ -12,7 +12,7 @@ const FormButton = ({ text, classList }) => (
 
 FormButton.propTypes = {
   text: PropTypes.string,
-  classList: PropTypes.arrayOf(PropTypes.string)
+  classList: PropTypes.string
 };
 
 export default FormButton;
