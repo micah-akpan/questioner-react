@@ -10,6 +10,7 @@ import {
   FormInputField,
   FormButton
 } from '../components/shared';
+import Footer from '../components/shared/Footer';
 
 const { addClasses } = appUtil;
 
@@ -102,7 +103,7 @@ const SignUpPage = () => (
             </FormLabel>
             <FormInputField
               name="password"
-              type="text"
+              type="password"
               placeholder="**************"
               id="c-pwd"
               classes={addClasses(['q-form__input'])}
@@ -124,24 +125,29 @@ const SignUpPage = () => (
 
         <div className="social-media__links">
           <ul>
-
             <li>
               <a href="#!" className="google">
-                <img src="../assets/icons/google.svg" alt="A red horizontal box with a Google icon and text" />
+                <img src="src/resources/icons/google.svg" alt="A red horizontal box with a Google icon and text" />
                 <span>Sign Up with Google</span>
               </a>
             </li>
 
             <li>
               <a href="#!" className="facebook">
-                <img src="../assets/icons/facebook-white.svg" alt="A blue horizontal box with a Facebook icon and text" />
+                <img src="src/resources/icons/facebook-white.svg" alt="A blue horizontal box with a Facebook icon and text" />
                 <span>Sign Up with Facebook</span>
               </a>
             </li>
           </ul>
         </div>
+
+        <p className="sign-in__link">
+          Already a member?{' '}
+          <Link to="/login">Sign In</Link>
+        </p>
       </div>
     </section>
+    <Footer />
   </Fragment>
 );
 

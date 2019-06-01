@@ -2,35 +2,35 @@
 
 /* Form */
 #q-form {
-  width: 600px;
-  min-width: 500px;
-  margin: 200px auto;
-  border: 1px solid #116466;
+  width        : 600px;
+  min-width    : 500px;
+  margin       : 200px auto;
+  border       : 1px solid #116466;
   border-radius: 3px;
 }
 
 #q-form .social-media__links--option-rule {
-  width: 100%;
+  width     : 100%;
   border-top: 1px solid #116466;
   margin-top: 30px;
   text-align: center;
 }
 
 #q-form .social-media__links--signup-option {
-  display: block;
-  margin: -10px auto 0 auto;
-  text-align: center;
-  font-weight: 600;
+  display         : block;
+  margin          : -10px auto 0 auto;
+  text-align      : center;
+  font-weight     : 600;
   background-color: #f4f4f4;
-  line-height: 1rem;
-  width: 60px;
-  color: #07504c;
+  line-height     : 1rem;
+  width           : 60px;
+  color           : #07504c;
 }
 
 #q-form h3 {
   text-align: center;
-  font-size: 2rem;
-  color: #116466;
+  font-size : 2rem;
+  color     : #116466;
 }
 
 #q-form abbr[title="required"] {
@@ -38,7 +38,7 @@
 }
 
 #q-form .q-form__input-name {
-  width: calc(90% / 2);
+  width  : calc(90% / 2);
   display: inline-block;
 }
 
@@ -55,33 +55,33 @@
 }
 
 #q-form input {
-  width: 100%;
+  width  : 100%;
   padding: 1rem;
   outline: none;
-  border: 1px solid #116466;
+  border : 1px solid #116466;
 }
 
 #q-form label {
-  display: block;
+  display      : block;
   margin-bottom: 5px;
-  font-weight: bold;
+  font-weight  : bold;
 }
 
 #q-form #forgot-pwd {
-  float: right;
+  float : right;
   margin: 5px;
 }
 
 #q-form .q-form__btn {
-  display: block;
-  margin: 50px auto 0 auto;
-  width: 100%;
-  padding: 1rem;
-  border: none;
+  display         : block;
+  margin          : 50px auto 0 auto;
+  width           : 100%;
+  padding         : 1rem;
+  border          : none;
   background-color: #116466;
-  color: #ffffff;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  color           : #ffffff;
+  cursor          : pointer;
+  transition      : background-color 0.3s;
 }
 
 #q-form button:hover {
@@ -89,33 +89,45 @@
 }
 
 #q-form .social-media__links {
-  margin: 20px auto 50px;
+  margin    : 20px auto 50px;
   transition: background-color 0.3s;
 }
 
 #q-form .social-media__links ul {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin    : 0;
+  padding   : 0;
 }
 
 #q-form .social-media__links li {
-  text-align: center;
+  text-align   : center;
   margin-bottom: 10px;
 }
 
-#q-form .social-media__links a {
-  display: inline-block;
-  width: 100%;
-  color: #ffffff;
+.social-media__links a {
+  display         : flex;
+  width           : 100%;
+  color           : #ffffff;
   background-color: grey;
-  padding: 0.8rem;
-  text-decoration: none;
+  padding         : 0.8rem;
+  text-decoration : none;
+
+  img {
+    display: block;
+    width  : 30px;
+    height : 30px;
+  }
+
+  span {
+    display: block;
+    flex   : 2 0 auto;
+    line-height: 2.5;
+  }
 }
 
 #q-form .social-media__links .facebook {
   background-color: #3b5998;
-  transition: background-color 0.3s;
+  transition      : background-color 0.3s;
 }
 
 #q-form .social-media__links .facebook:hover {
@@ -135,27 +147,27 @@
 }
 
 #q-form .toggle-password-visibility {
-  position: absolute;
-  top: 27px;
-  right: 0;
-  border: 1px solid #116466;
+  position        : absolute;
+  top             : 27px;
+  right           : 0;
+  border          : 1px solid #116466;
   background-color: #116466;
-  color: #fff;
-  padding: 1rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 0 3px 3px 0;
+  color           : #fff;
+  padding         : 1rem;
+  text-transform  : uppercase;
+  font-weight     : bold;
+  cursor          : pointer;
+  border-radius   : 0 3px 3px 0;
 }
 
 .q-form__input {
-  border: #d4d9e2 1px solid;
+  border       : #d4d9e2 1px solid;
   border-radius: 3px;
-  padding: 1rem;
-  color: #596377;
-  outline: none;
-  width: 100%;
-  display: block;
+  padding      : 1rem;
+  color        : #596377;
+  outline      : none;
+  width        : 100%;
+  display      : block;
   margin-bottom: 8px;
 }
 
@@ -164,25 +176,26 @@
 .q-form__textarea,
 .q-form__image-upload {
   margin-bottom: 10px;
-  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-family  : Roboto, Helvetica, Arial, sans-serif;
 }
 
-#q-form .q-form__input:focus, #q-form .q-form__textarea:focus {
+#q-form .q-form__input:focus,
+#q-form .q-form__textarea:focus {
   border: 2px solid #116466;
 }
 
-#q-form .q-form__input:focus + .toggle-password-visibility {
+#q-form .q-form__input:focus+.toggle-password-visibility {
   border: 2px solid #116466;
 }
 
 .q-form__textarea {
-  width: 100%;
-  resize: vertical;
-  border: #d4d9e2 1px solid;
-  min-height: 200px;
-  max-height: 300px;
+  width      : 100%;
+  resize     : vertical;
+  border     : #d4d9e2 1px solid;
+  min-height : 200px;
+  max-height : 300px;
   font-family: Roboto, Helvetica, sans-serif;
-  padding: 1rem;
+  padding    : 1rem;
 }
 
 .q-form__button,
@@ -192,34 +205,34 @@
 }
 
 .q-form__label {
-  display: block;
-  font-weight: 600;
-  color: #434c5e;
-  margin-bottom: 8px;
-  font-size: 11px;
+  display       : block;
+  font-weight   : 600;
+  color         : #434c5e;
+  margin-bottom : 8px;
+  font-size     : 11px;
   text-transform: uppercase;
 }
 
 .q-form__button {
-  border: none;
-  outline: 0;
-  margin: 20px auto;
-  display: block;
-  background: #116466;
+  border       : none;
+  outline      : 0;
+  margin       : 20px auto;
+  display      : block;
+  background   : #116466;
   border-radius: 100px;
-  height: 50px;
-  line-height: 50px;
-  padding: 0 60px;
-  font-size: 12px;
-  font-weight: 600;
-  color: #fff;
-  transition: box-shadow 0.2s ease, border 0.2s ease,
+  height       : 50px;
+  line-height  : 50px;
+  padding      : 0 60px;
+  font-size    : 12px;
+  font-weight  : 600;
+  color        : #fff;
+  transition   : box-shadow 0.2s ease, border 0.2s ease,
     -webkit-box-shadow 0.2s ease, background-color 0.2s;
   cursor: pointer;
 }
 
 .q-form__button:hover {
-  box-shadow: 2px 2px 4px #d4d9e2;
+  box-shadow      : 2px 2px 4px #d4d9e2;
   background-color: #07504c;
 }
 
@@ -246,12 +259,12 @@ form abbr[title="required"] {
 
 @media (max-width: 768px) {
   #q-form {
-    width: 90%;
+    width    : 90%;
     min-width: 0;
   }
 
   #q-form .q-form__input-name {
-    width: 100%;
+    width  : 100%;
     display: block;
   }
 
