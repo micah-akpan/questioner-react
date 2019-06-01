@@ -1,5 +1,9 @@
-/* eslint-disable */
-import React, { Fragment, useState, useEffect } from 'react';
+import React, {
+  Fragment,
+  useState,
+  useEffect,
+  useCallback
+} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import RightNav from '../components/shared/RightNav';
@@ -17,7 +21,7 @@ import { signUpUser } from '../actions/auth';
 
 const { addClasses } = appUtil;
 
-const SignUpPage = (props) => {
+const SignUpPage = props => {
   const [userData, setUserData] = useState({
     firstname: '',
     lastname: '',
@@ -25,30 +29,45 @@ const SignUpPage = (props) => {
     password: ''
   });
 
-  const handleFormSubmit = (evt) => {
+  const [signUpError, setSignUpError] = useState('');
+  const [passwordIsVisible, setPasswordVisibility] = useState(false);
+
+  const handleFormSubmit = evt => {
     evt.preventDefault();
     props.signUpUser(userData);
-    const { requesting, error } = props.user;
-    if (!requesting && !error) {
-      props.history.push('/meetups');
-    }
-  }
+  };
 
   useEffect(() => {
     if (props.user.data) {
-      localStorage.setItem('authToken', props.user.data.token)
+      localStorage.setItem('authToken', props.user.data.token);
+      // sign up was successful
+      // no need displaying the error message
+      setSignUpError('');
     }
-  }, [props.user.data])
+  }, [props.user.data]);
+
+  useEffect(() => {
+    if (props.user.error) {
+      setSignUpError(props.user.error.error);
+    }
+  }, [props.user.error]);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setSignUpError('');
+    }, 5000);
+    return clearInterval(timerId);
+  }, []);
 
   const { firstname, lastname, email, password } = userData;
 
-  const handleTextChange = (evt) => {
+  const handleTextChange = evt => {
     const { name, value } = evt.target;
     setUserData({
       ...userData,
       [name]: value
     });
-  }
+  };
   return (
     <Fragment>
       <header className="app-main-header">
@@ -69,6 +88,14 @@ const SignUpPage = (props) => {
         <div className="container">
           <h3 className="get-started-text">Get started with a free account</h3>
           <Form handleFormSubmit={handleFormSubmit}>
+            {
+              signUpError
+              && (
+                <div className="auth-process__feedback">
+                  {signUpError}
+                </div>
+              )
+            }
             <FormGroup classList={addClasses(['q-form__group'])}>
               <div className="q-form__input-name">
                 <FormLabel idText="f-name" className="q-form__label" labelText="First Name">
@@ -123,7 +150,7 @@ const SignUpPage = (props) => {
               </FormLabel>
               <FormInputField
                 name="password"
-                type="password"
+                type={passwordIsVisible ? 'text' : 'password'}
                 placeholder="**************"
                 id="pwd"
                 classes={addClasses(['q-form__input'])}
@@ -134,6 +161,11 @@ const SignUpPage = (props) => {
               <button
                 className="toggle-password-visibility"
                 type="button"
+                onClick={
+                  useCallback(() => {
+                    setPasswordVisibility(!passwordIsVisible);
+                  }, [passwordIsVisible])
+                }
               >
                 show
               </button>
@@ -146,21 +178,21 @@ const SignUpPage = (props) => {
               </FormLabel>
               <FormInputField
                 name="password"
-                type="password"
+                type={passwordIsVisible ? 'text' : 'password'}
                 placeholder="**************"
                 id="c-pwd"
                 classes={addClasses(['q-form__input'])}
                 required
               />
-              <button
-                className="toggle-password-visibility"
-                type="button"
-              >
-                show
-              </button>
               <span className="pwd-validation-error-msg" />
             </FormGroup>
-            <FormButton text="Sign Up" classList={addClasses(['q-form__button', 'q-large__button'])} />
+            <FormButton
+              classList={addClasses(['q-form__button', 'q-large__button', props.user.requesting && 'default_pointer'])}
+              disabled={props.user.requesting}
+            >
+              Sign Up
+              <span className={`${props.user.requesting ? 'loader' : ''}`} />
+            </FormButton>
           </Form>
           <div className="social-media__links--option-rule">
             <span className="social-media__links--signup-option">OR</span>

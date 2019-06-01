@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FormInputField = props => (
-  <input {...props} className={props.classes} />
+  <input {...props} className={props.classes} data-testid="form-input-field" />
 );
 
 FormInputField.propTypes = {

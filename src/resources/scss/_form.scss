@@ -257,6 +257,14 @@ form abbr[title="required"] {
   color: #f44;
 }
 
+.auth-process__feedback {
+  padding: 20px 10px;
+  background: #f44;
+  color: #fff;
+  font-size: 1em;
+  margin: 20px auto;
+}
+
 @media (max-width: 768px) {
   #q-form {
     width    : 90%;
