@@ -8,7 +8,7 @@ const FormGroup = ({ classList, children }) => (
 );
 
 FormGroup.propTypes = {
-  classList: PropTypes.arrayOf(PropTypes.string),
+  classList: PropTypes.string,
   children: PropTypes.node
 };
 

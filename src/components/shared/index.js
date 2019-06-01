@@ -8,6 +8,7 @@ import LeftNav from './LeftNav';
 import Card from './Card';
 import CardTop from './CardTop';
 import CardBottom from './CardBottom';
+import FormButton from './FormButton';
 
 export {
   Form,
@@ -19,5 +20,6 @@ export {
   LeftNav,
   Card,
   CardTop,
-  CardBottom
+  CardBottom,
+  FormButton
 };

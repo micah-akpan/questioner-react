@@ -2,9 +2,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const FormLabel = ({ idText, labelText, className }) => (
+const FormLabel = ({ idText, labelText, className, children }) => (
   <label htmlFor={idText} className={className}>
     {labelText}
+    {children}
   </label>
 );
 
