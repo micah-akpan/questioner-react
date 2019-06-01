@@ -13,5 +13,8 @@ module.exports = {
     '!coverage/**'
   ],
   coveragePathIgnorePatterns: ['<rootDir>/node_modules/'],
-  coverageReporters: ['text', 'text-lcov']
+  coverageReporters: ['text', 'text-lcov'],
+  moduleNameMapper: {
+    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$': '<rootDir>/src/__mocks__/fileMock.js'
+  }
 };

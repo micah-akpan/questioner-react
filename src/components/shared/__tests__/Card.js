@@ -4,7 +4,7 @@ import { Card } from '..';
 
 describe('Card Component', () => {
   test('it renders <Card />', () => {
-    const card = render(<Card />);
+    const card = render(<Card classList={['card', 'q-card']} />);
     expect(card).toBeTruthy();
   });
 });
