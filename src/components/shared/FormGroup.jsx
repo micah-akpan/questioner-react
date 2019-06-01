@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const FormGroup = ({ classList, children }) => (
-  <div className={{ ...classList }}>
+  <div className={classList}>
     {children}
   </div>
 );
