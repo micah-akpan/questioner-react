@@ -43,6 +43,7 @@ export const signInUser = userData => async dispatch => {
     dispatch(signInUserRequest());
     const authenticatedUser = await signIn(userData);
     dispatch(signInUserSuccess(authenticatedUser));
+    window.location.assign('/meetups');
   } catch (ex) {
     dispatch(signInUserFailure(ex));
   }
