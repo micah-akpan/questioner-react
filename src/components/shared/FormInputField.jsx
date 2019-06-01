@@ -15,7 +15,7 @@ FormInputField.propTypes = {
   id: PropTypes.string,
   required: PropTypes.bool,
   pattern: PropTypes.string,
-  autocomplete: PropTypes.oneOf(['off', 'on'])
+  autoComplete: PropTypes.oneOf(['off', 'on'])
 };
 
 export default FormInputField;
