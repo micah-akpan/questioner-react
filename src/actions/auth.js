@@ -54,7 +54,8 @@ export const signUpUser = userData => async dispatch => {
     dispatch(signUpUserRequest());
     const authenticatedUser = await registerUser(userData);
     dispatch(signUpUserSuccess(authenticatedUser));
+    window.location.assign('/meetups');
   } catch (ex) {
-    dispatch(signUpUserFailure(ex));
+    dispatch(signUpUserFailure(ex.response.data));
   }
 };
