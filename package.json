@@ -4,6 +4,7 @@
   "description": "Questioner is a tool that provides support for meetup organizers, with features that help them prioritize questions asked by potential attendees. This is the React front-end implementation of the project",
   "dependencies": {
     "axios": "^0.19.0",
+    "express": "^4.17.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -54,7 +55,7 @@
     "test:watch": "jest --watchAll",
     "test:coverage": "jest | coveralls",
     "dev": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --mode development --open\"",
-    "start": "webpack --mode development",
+    "start": "node server.js",
     "build": "webpack --mode production",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
