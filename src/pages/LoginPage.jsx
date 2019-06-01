@@ -1,5 +1,7 @@
+/* eslint-disable */
 import React, { Fragment, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import RightNav from '../components/shared/RightNav';
 import NavBar from '../components/NavBar';
 import appUtil from '../utils';
@@ -11,11 +13,25 @@ import {
   FormButton
 } from '../components/shared';
 import Footer from '../components/shared/Footer';
+import { signInUser } from '../actions/auth';
 
 const { addClasses } = appUtil;
 
-const LoginPage = () => {
+const LoginPage = (props) => {
   const [passwordIsVisible, setPasswordVisibility] = useState(false);
+  const [userData, setUserData] = useState({ email: '', password: '' });
+
+  const handleTextChange = evt => {
+    const { name, value } = evt.target;
+    setUserData({ ...userData, [name]: value });
+  }
+
+  const handleFormSubmit = evt => {
+    evt.preventDefault();
+    props.signInUser(userData);
+  };
+
+  const { email, password } = userData;
   return (
     <Fragment>
       <header className="app-main-header">
@@ -38,7 +54,7 @@ const LoginPage = () => {
           <h3>Log In To Questioner</h3>
           <p className="welcome-back-msg">Welcome back</p>
 
-          <Form>
+          <Form handleFormSubmit={handleFormSubmit}>
             <FormGroup classList={addClasses(['q-form__group'])}>
               <FormLabel idText="userEmail" className="q-form__label" labelText="Email" />
               <FormInputField
@@ -47,6 +63,8 @@ const LoginPage = () => {
                 placeholder="dennisritchie@email.com"
                 id="userEmail"
                 classes={addClasses(['q-form__input'])}
+                onChange={handleTextChange}
+                value={email}
                 required
               />
               <span className="input-validation-feedback">Must be a valid email address</span>
@@ -62,7 +80,9 @@ const LoginPage = () => {
                 id="userPwd"
                 classes={addClasses(['q-form__input'])}
                 pattern="(?=.*\d)(?=.*[a-z]).{8,}"
-                autocomplete="off"
+                autoComplete="off"
+                onChange={handleTextChange}
+                value={password}
                 required
               />
               <button
@@ -125,4 +145,10 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+const mapStateToProps = ({ auth }) => {
+  return {
+    user: auth
+  }
+};
+
+export default connect(mapStateToProps, { signInUser })(LoginPage);

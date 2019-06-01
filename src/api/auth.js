@@ -8,3 +8,12 @@ export const registerUser = async userData => {
     throw ex;
   }
 };
+
+export const signIn = async userData => {
+  try {
+    const { data: { data: [user] } } = await axiosInstance.post('/auth/login', userData);
+    return user;
+  } catch (ex) {
+    throw ex;
+  }
+};
