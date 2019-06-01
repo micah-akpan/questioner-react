@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Form = ({ children, handleFormSubmit, classList }) => (
   <form
-    className={{ ...classList }}
+    className={classList}
     onSubmit={handleFormSubmit}
   >
     {children}

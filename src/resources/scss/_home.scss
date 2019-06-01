@@ -40,6 +40,16 @@
       color           : $light-forest-green;
     }
   }
+
+  .auth-pages-nav_link {
+    display: inline-block;
+    a {
+      text-transform: uppercase;
+      color: #ffcb9a;
+      padding: 0;
+      display: inline;
+    }
+  }
 }
 
 .q-showcase {
