@@ -10,4 +10,10 @@ const Form = ({ children, handleFormSubmit, classList }) => (
   </form>
 );
 
+Form.propTypes = {
+  children: PropTypes.node,
+  handleFormSubmit: PropTypes.func,
+  classList: PropTypes.arrayOf(PropTypes.string)
+};
+
 export default Form;

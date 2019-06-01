@@ -5,7 +5,7 @@ export const fetchAllMeetups = async () => {
     const { data } = await axiosInstance.get('/meetups');
     return data;
   } catch (ex) {
-    return ex;
+    throw ex;
   }
 };
 

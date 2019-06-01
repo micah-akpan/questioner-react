@@ -10,7 +10,7 @@ FormInputField.propTypes = {
   placeholder: PropTypes.string.isRequired,
   type: PropTypes.string,
   value: PropTypes.string,
-  handleTextChange: PropTypes.func,
+  onChange: PropTypes.func,
   classes: PropTypes.string,
   id: PropTypes.string,
   required: PropTypes.bool,

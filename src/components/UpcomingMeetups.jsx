@@ -13,7 +13,7 @@ const UpcomingMeetups = ({ meetups, getMeetups }) => {
         <h3 className="heading-sec__primary">See meetups near you</h3>
         <div className="cards">
           {meetups.map(meetup => (
-            <UpcomingMeetupCard meetup={meetup} />
+            <UpcomingMeetupCard meetup={meetup} key={meetup.id} />
           ))}
         </div>
       </div>
