@@ -268,30 +268,23 @@ section {
 .mobile-nav-sidebar__wrapper {
   position: fixed;
   top     : 10px;
-  right   : 0;
+  right   : 5px;
   display : none;
   z-index : 9999;
   padding : 1em;
   cursor  : pointer;
+  outline : 0;
 
   div {
-    width           : 35px;
+    width           : 30px;
     height          : 5px;
-    background-color: black;
+    background-color: #aaa;
     margin          : 6px 0;
     transition      : all 0.4s;
-  }
 
-  .sidebar-menu__wrapper {
-    position  : fixed;
-    top       : 0;
-    right     : 0;
-    background: $light-forest-green;
-    display   : none;
-    transition: display 0.2s;
-    width     : 100%;
-    color     : black;
-    z-index   : 99999;
+    &:last-child {
+      width: 25px;
+    }
   }
 }
 
@@ -314,41 +307,53 @@ section {
 }
 
 /* Mobile Nav Menu */
-.mobile-nav-menu {
-  .mobile-nav-menu__wrapper {
-    .nav-menu-show {
-      display: block;
-    }
+.mobile-nav-menu__wrapper {
+  position  : fixed;
+  top       : 50px;
+  right     : 0;
+  background: $light-forest-green;
+  display   : none;
+  transition: display 0.2s;
+  width     : 100%;
+  color     : black;
+  z-index   : 9998;
 
-    .sidebar-menu__wrapper {
-      nav {
-        width: 100%;
+  .q-sidenav__menu {
+    width: 100%;
+
+    li {
+      display       : block;
+      width         : 100%;
+      text-transform: uppercase;
+      padding       : 20px 20px 20px 10px;
+      text-align    : right;
+      cursor: pointer;
+
+      &:first-of-type {
+        padding-top: 40px;
       }
 
-      .q-sidenav__menu {
-        li {
-          display       : block;
-          width         : 100%;
-          text-transform: uppercase;
-          border-bottom : 1px solid #cccccc;
-          padding       : 20px 10px;
-          text-align    : center;
+      &:last-of-type {
+        padding-bottom: 40px;
+      }
 
-          &:last-child {
-            border-bottom: 0;
-          }
+      a {
+        width: 90%;
+        color: $white-hex;
+        display: inline-block;
+        border-bottom : 2px solid #cccccc;
+        padding: 5px 0;
 
-          &:first-of-type {
-            padding-top: 80px;
-          }
-        }
-
-        a {
-          color: $white-hex;
+        &:hover {
+          color: #ffcb9a;
         }
       }
     }
   }
+}
+
+.nav-menu-show {
+  display: block;
 }
 
 /* Footer */

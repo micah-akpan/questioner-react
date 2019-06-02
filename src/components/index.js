@@ -5,6 +5,8 @@ import UpcomingMeetups from './UpcomingMeetups';
 import GetStartedSection from './GetStartedSection';
 import InfoCard from './InfoCard';
 import InfoCards from './InfoCards';
+import InfoCardSection from './InfoCardSection';
+import ShowCase from './ShowCase';
 
 export {
   HomePageNavBar,
@@ -13,5 +15,7 @@ export {
   GetStartedSection,
   InfoCard,
   InfoCards,
-  UpcomingMeetups
+  UpcomingMeetups,
+  InfoCardSection,
+  ShowCase
 };

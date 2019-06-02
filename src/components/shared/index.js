@@ -11,6 +11,7 @@ import CardBottom from './CardBottom';
 import FormButton from './FormButton';
 import MobileNavMenu from './MobileNavMenu';
 import MobileNavTriggerIcon from './MobileNavTriggerIcon';
+import Footer from './Footer';
 
 export {
   Form,
@@ -25,5 +26,6 @@ export {
   CardBottom,
   FormButton,
   MobileNavMenu,
-  MobileNavTriggerIcon
+  MobileNavTriggerIcon,
+  Footer
 };

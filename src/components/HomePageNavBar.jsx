@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import NavBar from './NavBar';
-import { LeftNav, RightNav, AuthRightNav } from './shared';
+import {
+  LeftNav,
+  RightNav,
+  AuthRightNav
+} from './shared';
 import appUtil from '../utils';
 
 const { addClasses } = appUtil;

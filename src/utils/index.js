@@ -33,7 +33,7 @@ const cards2 = [
   },
   {
     id: 5,
-    cardText: 'Do you have a <strong>question</strong> about the meetup?Ask Give your $0.02 to questions asked by meetup attendees like you. Vote on questions',
+    cardText: 'Do you have a question about the meetup? Ask. Give your $0.02 to questions asked by meetup attendees like you. Vote on questions',
     cardIcon: 'src/resources/icons/question-black.svg'
   },
   {

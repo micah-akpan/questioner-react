@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MobileNavTriggerIcon = ({ handleClick, handleKeyPress }) => (
+const MobileNavTriggerIcon = ({ handleClick, handleKeyPress, classList }) => (
   <div
-    id="mobile-nav-sidebar__wrapper"
+    className={classList}
     onClick={handleClick}
     onKeyDown={handleKeyPress}
     role="button"
@@ -17,7 +17,8 @@ const MobileNavTriggerIcon = ({ handleClick, handleKeyPress }) => (
 
 MobileNavTriggerIcon.propTypes = {
   handleClick: PropTypes.func,
-  handleKeyPress: PropTypes.func
+  handleKeyPress: PropTypes.func,
+  classList: PropTypes.string
 };
 
 export default MobileNavTriggerIcon;
