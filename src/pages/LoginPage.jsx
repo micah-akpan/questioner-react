@@ -24,7 +24,7 @@ const rules = {
 };
 
 const LoginPage = (props) => {
-  const [passwordIsVisible, setPasswordVisibility] = useState(false);
+const [passwordIsVisible, setPasswordVisibility] = useState(false);
   const [userData, setUserData] = useState({ email: '', password: '' });
   const [validationErrors, setValidationErrors] = useState({ email: null, password: null });
 
@@ -117,6 +117,7 @@ const LoginPage = (props) => {
               <button
                 className="toggle-password-visibility"
                 type="button"
+                data-testid="toggle-password__btn"
                 onClick={
                   useCallback(() => {
                     setPasswordVisibility(!passwordIsVisible);

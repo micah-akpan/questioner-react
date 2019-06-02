@@ -161,6 +161,7 @@ const SignUpPage = props => {
               <button
                 className="toggle-password-visibility"
                 type="button"
+                data-testid="toggle-password__btn"
                 onClick={
                   useCallback(() => {
                     setPasswordVisibility(!passwordIsVisible);

@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const MobileNavMenu = ({ links, classList }) => (
-  <section className={classList}>
-    <nav className="q-sidenav__menu" id="q-sidenav__menu">
+  <section className={classList} data-testid="mobile-sidenav">
+    <nav
+      className="q-sidenav__menu"
+    >
       <ul>
         {links.map(link => (
           <li key={link.id} className="q-sidenav__menu-item">

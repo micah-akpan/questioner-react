@@ -55,4 +55,31 @@ describe('SignUpPage Component', () => {
     fireEvent.change(input);
     expect(input.tagName).toEqual('INPUT');
   });
+
+  test('it toggles password visibility', () => {
+    const { getByTestId, container } = render(
+      <Provider store={store}>
+        <Router>
+          <SignUpPage />
+        </Router>
+      </Provider>
+    );
+    const element = getByTestId('toggle-password__btn');
+    fireEvent.click(element);
+    const passwordField = container.querySelector('input[name="password"]');
+    expect(passwordField.getAttribute('type')).toEqual('text');
+  });
+
+  test('it submits sign up form', () => {
+    const { getByText } = render(
+      <Provider store={store}>
+        <Router>
+          <SignUpPage />
+        </Router>
+      </Provider>
+    );
+    const signUpButton = getByText('Sign Up');
+    fireEvent.click(signUpButton);
+    expect(signUpButton.tagName).toEqual('BUTTON');
+  });
 });
