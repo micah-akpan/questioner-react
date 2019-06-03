@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const RightNav = ({ children, classList }) => (
-  <nav className="right-nav q-right-nav app-main-nav">
+  <nav className={classList}>
     {children}
   </nav>
 );
+
+RightNav.defaultProps = {
+  classList: 'right-nav q-right-nav app-main-nav'
+};
 
 RightNav.propTypes = {
   children: PropTypes.node,
