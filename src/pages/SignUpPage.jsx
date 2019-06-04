@@ -31,10 +31,15 @@ const SignUpPage = props => {
 
   const [signUpError, setSignUpError] = useState('');
   const [passwordIsVisible, setPasswordVisibility] = useState(false);
-  const [passwordMatches, setPasswordMatch] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState('');
+
+  const { firstname, lastname, email, password } = userData;
 
   const handleFormSubmit = evt => {
     evt.preventDefault();
+    if (confirmPassword !== password) {
+      return;
+    }
     props.signUpUser(userData);
   };
 
@@ -60,8 +65,6 @@ const SignUpPage = props => {
     return clearInterval(timerId);
   }, []);
 
-  const { firstname, lastname, email, password } = userData;
-
   const handleTextChange = evt => {
     const { name, value } = evt.target;
     setUserData({
@@ -69,6 +72,11 @@ const SignUpPage = props => {
       [name]: value
     });
   };
+
+  const handleConfirmPwdChange = evt => {
+    setConfirmPassword(evt.target.value);
+  };
+
   return (
     <Fragment>
       <header className="app-main-header">
@@ -188,9 +196,11 @@ const SignUpPage = props => {
                 placeholder="**************"
                 id="c-pwd"
                 classes={addClasses(['q-form__input'])}
+                onChange={handleConfirmPwdChange}
                 required
               />
               <span className="pwd-validation-error-msg" />
+              <span className="password-match__feedback">{confirmPassword === userData.password ? '' : 'Passwords do not match'}</span>
             </FormGroup>
             <FormButton
               classList={addClasses(['q-form__button', 'q-large__button', props.user.requesting && 'default_pointer'])}
