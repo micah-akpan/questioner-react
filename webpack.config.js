@@ -52,7 +52,8 @@ const config = {
       filename: isDevelopment ? '[name].css' : '[name].[hash].css',
       chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
     })
-  ]
+  ],
+  devtool: 'cheap-eval-source-map'
 };
 
 module.exports = config;

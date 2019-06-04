@@ -1,0 +1,321 @@
+/* Stylings for meetups list page */
+
+/* Search Bar for meetups */
+#q-search {
+  margin: 100px 0px 30px;
+}
+
+.q-search {
+  margin: 100px 0px 30px;
+}
+
+#q-cards {
+  margin-bottom: 200px;
+}
+
+.cards {
+  flex-wrap: wrap;
+}
+
+.cards .q-card {
+  width: calc(100% / 3 - 20px);
+  // border: 1px solid #116466;
+}
+
+/* Cards main content */
+.q-card .q-card__primary {
+  height: 230px;
+  border-bottom: 1px solid #116466;
+}
+
+.q-card .q-card__primary .content {
+  max-width: 100%;
+  position: relative;
+}
+
+.q-card__primary-options {
+  position: absolute;
+  width: 40px;
+  height: 20px;
+  top: -80px;
+  right: 10px;
+}
+
+/* Meetup Card DropDown Options */
+.q-card__primary-options .dropdown-menu {
+  position: absolute;
+  top: 140px;
+  right: 10px;
+  width: 200px !important;
+  background: #fff;
+  display: none;
+  border-radius: 2px;
+}
+
+.q-card__primary-options .dropdown-menu li {
+  text-transform: capitalize;
+  padding: 7px;
+  font-size: 1em;
+}
+
+.q-card__primary-options .dropdown-menu li:hover {
+  background: #ccc;
+}
+
+.q-card__primary-options .dropdown-menu li img {
+  vertical-align: middle;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+}
+
+.q-card__primary-options .dropdown-menu li span {
+  vertical-align: middle;
+}
+
+.q-card__primary-options .dropdown-menu .delete-option {
+  color: #e44;
+}
+
+.q-card__primary-options .active {
+  display: block;
+}
+
+.delete-modal-content h3 {
+  text-align: left;
+}
+
+.delete-modal-content .button__wrapper {
+  display: 100%;
+  text-align: right;
+}
+
+/* TODO: Make this global */
+.active {
+  display: block;
+}
+
+.delete-btn {
+  background-color: #e44;
+  color: #fff;
+}
+
+.delete-btn > img {
+  width: 12px;
+  height: 12px;
+  vertical-align: middle;
+}
+
+.delete-btn > span {
+  vertical-align: middle;
+}
+
+.delete-btn:hover {
+  background-color: #d44;
+}
+
+.q-card__primary {
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+}
+
+.q-card__primary .content .meetup-main-image {
+  width: 100%;
+  height: 230px;
+}
+
+.q-card__primary .content .q-asked-count {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #ffffff;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.q-card .q-card__sec {
+  padding: 5px 0;
+}
+
+.q-card .q-card__sec p {
+  margin: 0 10px;
+  padding: 0;
+  color: #116466;
+}
+
+.q-card .q-card__sec .meetup-title {
+  font-size: 1.4rem;
+  text-transform: capitalize;
+}
+
+.q-card .q-card__sec .meetup-sched-date {
+  color: #333333;
+  padding: 0;
+}
+
+/* User Profile dropdown */
+nav.no-flex {
+  width: 100%;
+}
+
+.q-right-nav .dropdown-trigger-btn {
+  cursor: pointer;
+}
+
+#q-meetups-preview .share-media-links span {
+  display: inline-block;
+  padding: 0;
+  margin: 10px 0;
+}
+
+#q-meetups-preview .share-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+#q-meetups-preview .share-media-links span img {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  margin-right: 10px;
+}
+
+#q-meetups-preview .meetup-location-map__preview {
+  height: 300px;
+  width: 100%;
+}
+
+.show {
+  width: 300px !important;
+  display: inline-block !important;
+}
+
+.q-card__primary-options button {
+  width: 100%;
+  height: 0px;
+  padding: 0;
+}
+
+.q-card__primary-options button img {
+  width: 100%;
+  padding: 5px 0;
+  margin-top: 100px;
+  height: 40px !important;
+}
+
+.q-card__primary .content .q-asked-count,
+.q-card__primary-options button img {
+  background: radial-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+}
+
+/* Form styling specifics for meetups page */
+#q-form {
+  width: 90%;
+  border: none;
+  margin: 10px auto;
+  min-width: 90%;
+}
+
+#q-form .q-form__input {
+  width: 100%;
+}
+
+.save__btn::before {
+  content: '';
+  background: url('../icons/save.svg');
+  background-size: cover;
+  background-position: center;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 2px;
+}
+
+.meetup-tag__badge {
+  background-color: #ccc;
+  border-radius: 3px;
+  color: #333;
+  padding: 5px;
+  margin-right: 5px;
+}
+
+.meetup-tag__badge-btn {
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+  cursor: pointer;
+}
+
+.meetup-tag__badge-img {
+  width: 100%;
+}
+
+.cards__block {
+  display: block;
+}
+
+.cards__flex {
+  display: flex;
+}
+
+/* Search Meetups Bar & Fallback Styling */
+.search-form__btn {
+  background: transparent;
+  padding-right: 14px;
+  cursor: pointer;
+}
+
+.no-meetup-fallback__text {
+
+}
+
+.no-meetup-fallback__link {
+  display: block;
+}
+
+.no-meetup-fallback__term {
+  font-weight: 600;
+}
+
+.no-meetup-fallback__link:hover {
+  text-decoration: underline;
+}
+
+/* Meetups Search List Item */
+.meetups-search-type-list {
+
+}
+
+.meetups-search-type-list__item {
+  padding-bottom: 0.7em !important;
+}
+
+.meetups-search-type-list__item--active {
+  border-bottom: #116466 solid 4px;
+}
+
+.meetups-search-type-list__item--inactive {
+  
+}
+
+
+@media (max-width: 768px) {
+  .show {
+    width: 200px !important;
+  }
+
+  #q-search {
+    margin-left: 0;
+  }
+
+  .cards .q-card {
+    width: 100%;
+  }
+
+  .q-user-profile__dropdown-menu {
+    display: none !important;
+  }
+}

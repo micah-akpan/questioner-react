@@ -281,6 +281,14 @@
   cursor: default !important;
 }
 
+.header__no-border {
+  h1 {
+    &:after {
+      content: ""
+    }
+  }
+}
+
 /* Mobile Devices */
 @media (max-width: 768px) {
   .cards {
