@@ -53,7 +53,12 @@ const config = {
       chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
     })
   ],
-  devtool: 'cheap-eval-source-map'
+  devtool: 'cheap-eval-source-map',
+  devServer: {
+    historyApiFallback: true,
+    port: 8080,
+    progress: true,
+  }
 };
 
 module.exports = config;

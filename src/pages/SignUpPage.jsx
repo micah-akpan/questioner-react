@@ -31,6 +31,7 @@ const SignUpPage = props => {
 
   const [signUpError, setSignUpError] = useState('');
   const [passwordIsVisible, setPasswordVisibility] = useState(false);
+  const [passwordMatches, setPasswordMatch] = useState(false);
 
   const handleFormSubmit = evt => {
     evt.preventDefault();
@@ -72,19 +73,19 @@ const SignUpPage = props => {
     <Fragment>
       <header className="app-main-header">
         <div className="container">
-          <NavBar classes={appUtil.addClasses(['q-flex', 'header-content'])}>
+          <NavBar classes={appUtil.addClasses(['q-flex', 'header-content', 'header__no-border'])}>
             <RightNav>
               <ul>
                 <span>Are you a member?</span>
                 <li>
-                  <Link to="/">Login</Link>
+                  <Link to="/login">Login</Link>
                 </li>
               </ul>
             </RightNav>
           </NavBar>
         </div>
       </header>
-      <section className="q-form" id="q-form">
+      <section className="q-form">
         <div className="container">
           <h3 className="get-started-text">Get started with a free account</h3>
           <Form handleFormSubmit={handleFormSubmit}>
@@ -168,7 +169,11 @@ const SignUpPage = props => {
                   }, [passwordIsVisible])
                 }
               >
-                show
+                <img
+                  src={passwordIsVisible ? 'src/resources/icons/hide.svg' : 'src/resources/icons/view.svg'}
+                  alt="A light forest green coloured eye ball"
+                  className="toggle-password__image"
+                />
               </button>
               <span>Your password must be at least 8 characters</span>
             </FormGroup>

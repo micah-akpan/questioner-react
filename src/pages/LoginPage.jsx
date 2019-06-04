@@ -63,7 +63,7 @@ const [passwordIsVisible, setPasswordVisibility] = useState(false);
     <Fragment>
       <header className="app-main-header">
         <div className="container">
-          <NavBar classes={appUtil.addClasses(['q-flex', 'header-content'])}>
+          <NavBar classes={appUtil.addClasses(['q-flex', 'header-content', 'header__no-border'])}>
             <RightNav>
               <ul className="auth-pages-nav_link">
                 <span>Not Registered yet?
@@ -76,7 +76,7 @@ const [passwordIsVisible, setPasswordVisibility] = useState(false);
           </NavBar>
         </div>
       </header>
-      <section className="q-form" id="q-form">
+      <section className="q-form">
         <div className="container">
           <h3>Log In To Questioner</h3>
           <p className="welcome-back-msg">Welcome back</p>
@@ -120,11 +120,12 @@ const [passwordIsVisible, setPasswordVisibility] = useState(false);
                 data-testid="toggle-password__btn"
                 onClick={
                   useCallback(() => {
-                    setPasswordVisibility(!passwordIsVisible);
+                    setPasswordVisibility
+                    (!passwordIsVisible);
                   }, [passwordIsVisible])
                 }
               >
-                {passwordIsVisible ? 'hide' : 'show'}
+                <img src={passwordIsVisible ? "src/resources/icons/hide.svg" : "src/resources/icons/view.svg"} className="toggle-password__image" />
               </button>
               <span
                 className="input-validation-feedback"
