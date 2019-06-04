@@ -21,7 +21,7 @@ const cards1 = [
   {
     id: 3,
     cardText: 'View Top Questions and Comments on those questions for a particular meetup',
-    cardIcon: 'src/resources/icons/view.svg'
+    cardIcon: 'src/resources/icons/view-black.svg'
   }
 ];
 

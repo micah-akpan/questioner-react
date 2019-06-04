@@ -27,7 +27,7 @@ body {
 
 .container {
   width   : 80%;
-  margin  : auto;
+  margin  : 0 auto;
   overflow: hidden;
 
   @media screen and (max-width: 768px) {
@@ -411,13 +411,9 @@ section {
   width     : 100%;
   padding   : 10px 24px;
   background: #fafafa;
-  text-align: center;
   font-size : 0.8em;
-
-  >* {
-    padding: 0;
-    margin : 0;
-  }
+  text-align: center;
+  margin: 0 auto;
 
   ul {
     li {
@@ -434,7 +430,6 @@ section {
 
   .copyright {
     margin    : 0;
-    padding   : 0;
     color     : #777;
     flex      : 1 0 25%;
     text-align: left;
