@@ -267,6 +267,10 @@ form abbr[title="required"] {
   margin: 20px auto;
 }
 
+.password-match__feedback {
+  font-size: 0.8em;
+}
+
 @media (max-width: 768px) {
   .q-form {
     width    : 90%;
