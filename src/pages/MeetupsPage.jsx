@@ -57,7 +57,7 @@ const MeetupsPage = ({ meetups, getMeetups }) => {
         }
         getSearchNavRef={getSearchNavRef}
       />
-      <Meetups meetups={meetups} />
+      {/* <Meetups meetups={meetups} /> */}
     </Fragment>
   );
 };
