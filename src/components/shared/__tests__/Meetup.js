@@ -4,9 +4,9 @@ import { render } from '@testing-library/react';
 import { Meetup } from '..';
 import meetupsMock from '../../__mocks__/meetups';
 
-describe('MeetupCard Component', () => {
-  test('it renders <MeetupCard />', () => {
-    const meetupCard = render(
+describe('Meetup Component', () => {
+  test('it renders <Meetup />', () => {
+    const meetup = render(
       <Router>
         <Meetup
           meetup={meetupsMock.meetups[0]}
@@ -14,6 +14,6 @@ describe('MeetupCard Component', () => {
         />
       </Router>
     );
-    expect(meetupCard).toBeTruthy();
+    expect(meetup).toBeTruthy();
   });
 });

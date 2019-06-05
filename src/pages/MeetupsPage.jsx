@@ -11,7 +11,7 @@ const hideSearchForm = (evtTarget, {
   setSearchFormVisibility,
   searchNavRef
 }) => {
-  if (!searchNavRef.contains(evtTarget) && searchFormIsVisible) {
+  if (searchNavRef && !searchNavRef.contains(evtTarget) && searchFormIsVisible) {
     setSearchFormVisibility(false);
   }
 };
@@ -57,7 +57,7 @@ const MeetupsPage = ({ meetups, getMeetups }) => {
         }
         getSearchNavRef={getSearchNavRef}
       />
-      {/* <Meetups meetups={meetups} /> */}
+      <Meetups meetups={meetups} />
     </Fragment>
   );
 };

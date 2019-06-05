@@ -32,7 +32,11 @@ const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef
     inputRef.focus();
   }, [searchFormIsVisible])
   return (
-    <section id="q-search" className="q-search" ref={node => { getSearchNavRef(node); }}>
+    <section 
+      id="q-search" 
+      className="q-search" 
+      ref={node => { getSearchNavRef(node); }}
+    >
       <div className="container">
         <nav className="q-search__nav">
           <ul>
@@ -41,6 +45,7 @@ const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef
                 id="search-icon"
                 type="button"
                 onClick={handleSearchIconClick}
+                data-testid="search-icon"
               >
                 <img
                   src={searchIcon}
@@ -49,7 +54,10 @@ const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef
               </button>
             </li>
 
-            <li className={addClasses(['search-bar__link', searchFormIsVisible && 'search-bar__link-show'])}>
+            <li 
+              className={addClasses(['search-bar__link', searchFormIsVisible && 'search-bar__link-show'])}
+              data-testid="search-form-list-item"
+            >
               <form>
                 <input
                   type="search"

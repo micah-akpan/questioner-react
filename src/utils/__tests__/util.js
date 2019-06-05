@@ -1,4 +1,4 @@
-import appUtil from '..';
+import appUtil, { genHash } from '..';
 
 describe('AppUtil tests', () => {
   test('should add classes', () => {
@@ -7,5 +7,9 @@ describe('AppUtil tests', () => {
 
   test('should add classes', () => {
     expect(appUtil.addClasses(['blue-bg', 'red-fg'])).toEqual('blue-bg red-fg');
+  });
+
+  test('should generate a random hash', () => {
+    expect(genHash().length).toEqual(7);
   });
 });

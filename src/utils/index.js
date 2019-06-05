@@ -6,6 +6,48 @@
  */
 const addClasses = arrayOfClasses => arrayOfClasses.join(' ');
 
+/**
+ * @const numMonthToStr
+ * @description A hash of month ordinal numbers to their short forms
+ */
+const numMonthToShortForm = {
+  1: 'Jan',
+  2: 'Feb',
+  3: 'Mar',
+  4: 'Apr',
+  5: 'May',
+  6: 'Jun',
+  7: 'Jul',
+  8: 'Aug',
+  9: 'Sept',
+  10: 'Oct',
+  11: 'Nov',
+  12: 'Dec'
+};
+
+/**
+ * @function getMonthShortForm
+ * @param {Number} month
+ * @returns {String} A string version of date e.g 1 -> Jan
+ */
+const getMonthShortForm = month => numMonthToShortForm[month + 1];
+
+/**
+ * @function parseDate
+ * @param {String} dateStr
+ * @returns {String} Returns a string (short form of the month and day)
+ */
+export const parseDate = dateStr => {
+  const currentDate = new Date(dateStr);
+  const month = currentDate.getMonth();
+  const monthShortForm = getMonthShortForm(month);
+  const day = currentDate.getDate();
+
+  return `${monthShortForm} ${day}`;
+};
+
+export const genHash = () => Math.random().toString(36).substr(2, 7);
+
 
 const cards1 = [
   {
@@ -43,8 +85,10 @@ const cards2 = [
   }
 ];
 
+
 export default {
   addClasses,
   cards1,
-  cards2
+  cards2,
+  parseDate
 };

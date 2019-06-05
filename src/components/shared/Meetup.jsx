@@ -1,11 +1,12 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
 import CardTop from './CardTop';
 import CardBottom from './CardBottom';
 import mainMeetupImage from '../../resources/images/andela.jpeg';
+import { parseDate } from '../../utils';
 
-const MeetupCard = ({ meetup, questionCount }) => (
+const Meetup = ({ meetup, questionCount }) => (
   <Card classList={['q-card']}>
     <CardTop>
       <div>
@@ -24,10 +25,10 @@ const MeetupCard = ({ meetup, questionCount }) => (
     <CardBottom>
       <div className="content q-card__sec">
         <p className="meetup-title">{meetup.title}</p>
-        <p className="meetup-sched-date">{meetup.createdAt.toString()}</p>
+        <p className="meetup-sched-date">{parseDate(meetup.happeningOn)}</p>
       </div>
     </CardBottom>
   </Card>
 );
 
-export default MeetupCard;
+export default Meetup;
