@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, getByTestId } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';

@@ -24,7 +24,7 @@ const rules = {
 };
 
 const LoginPage = (props) => {
-const [passwordIsVisible, setPasswordVisibility] = useState(false);
+  const [passwordIsVisible, setPasswordVisibility] = useState(false);
   const [userData, setUserData] = useState({ email: '', password: '' });
   const [validationErrors, setValidationErrors] = useState({ email: null, password: null });
 
@@ -83,7 +83,9 @@ const [passwordIsVisible, setPasswordVisibility] = useState(false);
 
           <Form handleFormSubmit={handleFormSubmit}>
             <FormGroup classList={addClasses(['q-form__group'])}>
-              <FormLabel idText="userEmail" className="q-form__label" labelText="Email" />
+              <FormLabel idText="userEmail" className="q-form__label" labelText="Email">
+                <abbr title="required">*</abbr>
+              </FormLabel>
               <FormInputField
                 name="email"
                 type="text" // email type is overridden here to provide a better validation error
@@ -121,7 +123,7 @@ const [passwordIsVisible, setPasswordVisibility] = useState(false);
                 onClick={
                   useCallback(() => {
                     setPasswordVisibility
-                    (!passwordIsVisible);
+                      (!passwordIsVisible);
                   }, [passwordIsVisible])
                 }
               >
@@ -175,7 +177,6 @@ const [passwordIsVisible, setPasswordVisibility] = useState(false);
           </p>
         </div>
       </section>
-      <Footer />
     </Fragment>
   );
 };

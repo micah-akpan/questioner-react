@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import { render, fireEvent } from '@testing-library/react';
 import mockStoreData from '../../__mocks__/store';
-import HomePage from '../Index';
+import { HomePage } from '..';
 
 const mockStore = configureMockStore([thunk]);
 const store = mockStore(mockStoreData);

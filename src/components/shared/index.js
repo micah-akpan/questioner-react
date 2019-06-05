@@ -14,6 +14,7 @@ import MobileNavTriggerIcon from './MobileNavTriggerIcon';
 import Footer from './Footer';
 import Meetup from './Meetup';
 import Meetups from './Meetups';
+import Dropdown from './Dropdown';
 
 export {
   Form,
@@ -31,5 +32,6 @@ export {
   MobileNavTriggerIcon,
   Footer,
   Meetup,
-  Meetups
+  Meetups,
+  Dropdown
 };

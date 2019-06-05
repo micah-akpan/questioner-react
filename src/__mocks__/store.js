@@ -15,5 +15,10 @@ export default {
     data: null,
     error: null,
     requesting: false
+  },
+  questions: {
+    data: [],
+    error: null,
+    requesting: false
   }
 };

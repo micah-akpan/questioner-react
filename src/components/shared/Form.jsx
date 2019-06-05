@@ -5,6 +5,7 @@ const Form = ({ children, handleFormSubmit, classList }) => (
   <form
     className={classList}
     onSubmit={handleFormSubmit}
+    data-testid="app-general-form"
   >
     {children}
   </form>

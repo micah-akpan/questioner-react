@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import Meetup from './Meetup';
 
 const Meetups = ({ meetups }) => (
-  <div>
-    {meetups.map(meetup => (
-      <Meetup meetup={meetup} />
-    ))}
-  </div>
+  <section className="q-cards" id="q-cards">
+    <div className="container">
+      <div className="cards">
+        {meetups.map(meetup => (
+          <Meetup meetup={meetup} key={meetup.id} />
+        ))}
+      </div>
+    </div>
+  </section>
 );
 
 Meetups.propTypes = {

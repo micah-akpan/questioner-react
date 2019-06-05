@@ -238,7 +238,6 @@ const SignUpPage = props => {
           </p>
         </div>
       </section>
-      <Footer />
     </Fragment>
   );
 };

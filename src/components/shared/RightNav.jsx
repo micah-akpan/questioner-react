@@ -13,7 +13,7 @@ RightNav.defaultProps = {
 
 RightNav.propTypes = {
   children: PropTypes.node,
-  classList: PropTypes.arrayOf(PropTypes.string)
+  classList: PropTypes.string
 };
 
 export default RightNav;
