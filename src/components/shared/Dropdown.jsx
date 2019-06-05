@@ -13,7 +13,9 @@ const Dropdown = ({ classList, dropDownItems }) => {
       {dropDownItems.map((item) => {
         return (
           <li key={item.id} className={addClasses(item.classList)}>
-            <img src={item.icon} alt={item.iconDescription}
+            <img 
+              src={item.icon} alt={item.iconDescription}
+              className="dropdown-menu__image"
             />
             <span>{item.title}</span>
           </li>
@@ -22,6 +24,10 @@ const Dropdown = ({ classList, dropDownItems }) => {
       </ul>
     </div>
   )
+}
+
+Dropdown.defaultProps = {
+  classList: ['dropdown-menu']
 }
 
 Dropdown.propTypes = {

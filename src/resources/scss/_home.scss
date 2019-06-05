@@ -43,11 +43,12 @@
 
   .auth-pages-nav_link {
     display: inline-block;
+
     a {
       text-transform: uppercase;
-      color: #ffcb9a;
-      padding: 0;
-      display: inline;
+      color         : #ffcb9a;
+      padding       : 0;
+      display       : inline;
     }
   }
 }
@@ -125,7 +126,7 @@
       max-width: 100%;
       position : relative;
 
-      img {
+      .q-card__image {
         width : 100% !important;
         height: 200px;
       }
@@ -261,20 +262,25 @@
 
 // Spinner
 .loader {
-  border: 2px solid #116466;
-  border-top: 2px solid #f3f3f3;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  animation: spin 2s linear infinite;
-  display: inline-block;
+  border        : 2px solid #116466;
+  border-top    : 2px solid #f3f3f3;
+  border-radius : 50%;
+  width         : 30px;
+  height        : 30px;
+  animation     : spin 2s linear infinite;
+  display       : inline-block;
   vertical-align: middle;
-  margin-left: 20px;
+  margin-left   : 20px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .default_pointer {

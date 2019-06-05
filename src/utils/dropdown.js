@@ -11,7 +11,7 @@ export default [
 
   {
     id: genHash(),
-    title: 'edit',
+    title: 'delete',
     icon: 'src/resources/icons/delete-red.svg',
     iconDescription: 'a red trash bin',
     classList: ['delete-option']

@@ -5,6 +5,7 @@ import MeetupsPageNavBar from '../components/MeetupsPageNavBar';
 import SearchNav from '../components/SearchNav';
 import Meetups from '../components/shared/Meetups';
 import { getMeetups } from '../actions/meetups';
+import { getQuestions } from '../actions/questions';
 
 const hideSearchForm = (evtTarget, {
   searchFormIsVisible,
@@ -62,8 +63,9 @@ const MeetupsPage = ({ meetups, getMeetups }) => {
   );
 };
 
-const mapStateToProps = ({ meetups }) => ({
-  meetups: meetups.data
+const mapStateToProps = ({ meetups, questions }) => ({
+  meetups: meetups.data,
+  questions: questions.data
 });
 
 export default connect(mapStateToProps, { getMeetups })(MeetupsPage);

@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HomePage from '../pages/Index';
-import SignUpPage from '../pages/SignUpPage';
-import LoginPage from '../pages/LoginPage';
-import MeetupsPage from '../pages/MeetupsPage';
+import { HomePage, SignUpPage, LoginPage, MeetupsPage } from '../pages';
+import { Footer } from './shared';
 
 const App = () => (
-  <Router>
-    <Switch>
-      <Route path="/meetups" component={MeetupsPage} />
-      <Route path="/login" component={LoginPage} />
-      <Route path="/signup" component={SignUpPage} />
-      <Route path="/" component={HomePage} />
-    </Switch>
-  </Router>
+  <Fragment>
+    <Router>
+      <Switch>
+        <Route path="/meetups" component={MeetupsPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/signup" component={SignUpPage} />
+        <Route path="/" component={HomePage} />
+      </Switch>
+    </Router>
+    <Footer />
+  </Fragment>
 );
 
 export default App;

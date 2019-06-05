@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useCallback } from 'react';
+import React, { Fragment, useState, useCallback } from 'react';
 import appUtil from '../utils';
 import {
   GetStartedSection,
@@ -7,7 +7,7 @@ import {
   ShowCase,
   HomePageNavBar
 } from '../components';
-import { Footer, MobileNavTriggerIcon, MobileNavMenu } from '../components/shared';
+import { MobileNavTriggerIcon, MobileNavMenu } from '../components/shared';
 
 const { addClasses, cards1, cards2 } = appUtil;
 
@@ -96,7 +96,6 @@ const HomePage = () => {
         classList={['questioner-what']}
       />
       <GetStartedSection />
-      <Footer />
     </Fragment>
   );
 };
