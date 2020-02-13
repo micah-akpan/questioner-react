@@ -5,7 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const config = {
-  entry: path.join(__dirname, 'src', 'index.js'),
+  entry: path.join(__dirname, 'src', 'index.tsx'),
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'app.js'
@@ -21,6 +21,10 @@ const config = {
             presets: ['@babel/preset-env']
           }
         }
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
       },
       {
         test: /\.(css|scss)$/,
@@ -41,7 +45,7 @@ const config = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.css', '.scss']
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.css', '.scss']
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -56,7 +60,7 @@ const config = {
   devtool: 'cheap-eval-source-map',
   devServer: {
     historyApiFallback: true,
-    port: 8080,
+    port: 7777,
     progress: true,
   }
 };

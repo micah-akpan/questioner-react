@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "allowUmdGlobalAccess": true,
+    "moduleResolution": "Node",
+    "module": "ES2015",
+    "jsx": "react",
+    "lib": ["ES2015", "DOM", "DOM.Iterable"],
+    "sourceMap": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

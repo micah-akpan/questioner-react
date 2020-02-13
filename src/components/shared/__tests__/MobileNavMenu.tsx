@@ -8,7 +8,7 @@ describe('MobileNavMenu Component', () => {
   test('it renders <MobileNavMenu />', () => {
     const mobileNavMenu = render(
       <Router>
-        <MobileNavMenu links={navLinkMock.navigationLinks} />
+        <MobileNavMenu links={navLinkMock.navigationLinks} classList={[]} />
       </Router>
     );
     expect(mobileNavMenu).toBeTruthy();

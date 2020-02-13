@@ -37,7 +37,7 @@ describe('LoginPage Component', () => {
   });
 
   test('it validates wront inputs', () => {
-    const { getByPlaceholderText, getByText, container } = render(
+    const { getByPlaceholderText, getByText } = render(
       <Provider store={store}>
         <Router>
           <LoginPage />
@@ -46,7 +46,7 @@ describe('LoginPage Component', () => {
     );
     const emailInputField = getByPlaceholderText('dennisritchie@email.com');
     fireEvent.change(emailInputField);
-    emailInputField.value = 'dennisritchie';
+    emailInputField.setAttribute('value', 'dennisritchie')
     const submitButton = getByText('Login');
     fireEvent.click(submitButton);
     expect(submitButton.tagName).toEqual('BUTTON');
@@ -63,7 +63,7 @@ describe('LoginPage Component', () => {
     );
     const emailInputField = getByPlaceholderText('dennisritchie@email.com');
     fireEvent.change(emailInputField);
-    emailInputField.value = 'dennisritchie@email.com';
+    emailInputField.setAttribute('value',  'dennisritchie@email.com');
     const submitButton = getByText('Login');
     fireEvent.click(submitButton);
     expect(submitButton.tagName).toEqual('BUTTON');

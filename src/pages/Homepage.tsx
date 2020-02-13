@@ -68,7 +68,7 @@ const HomePage = () => {
           handleClick={
             useCallback(() => {
               setMobileNavVisibility(!mobileNavIsVisible);
-            })
+            }, [])
           }
           handleKeyPress={e => {
             toggleMobileNavVisibility(e, {

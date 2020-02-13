@@ -54,7 +54,7 @@ const MeetupsPage = ({ meetups, getMeetups }) => {
         handleSearchIconClick={
           useCallback(() => {
             setSearchFormVisibility(!searchFormIsVisible);
-          })
+          }, [])
         }
         getSearchNavRef={getSearchNavRef}
       />

@@ -19,7 +19,8 @@ const MobileNavMenu = ({ links, classList }) => (
 );
 
 MobileNavMenu.propTypes = {
-  links: PropTypes.arrayOf(PropTypes.object)
+  links: PropTypes.arrayOf(PropTypes.object),
+  classList: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default MobileNavMenu;
