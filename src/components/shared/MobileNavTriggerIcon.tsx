@@ -7,7 +7,7 @@ const MobileNavTriggerIcon = ({ handleClick, handleKeyPress, classList }) => (
     onClick={handleClick}
     onKeyDown={handleKeyPress}
     role="button"
-    tabIndex="0"
+    tabIndex={0}
     data-testid="mobile-nav-trigger-icon"
   >
     <div className="menu-bar1" />

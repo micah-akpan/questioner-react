@@ -7,7 +7,7 @@ import './resources/scss/styles.scss';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App name="Questioner" />,
+    <App />,
   </Provider>,
   document.getElementById('app')
 );

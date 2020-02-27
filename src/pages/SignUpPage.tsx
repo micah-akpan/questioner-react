@@ -77,6 +77,8 @@ const SignUpPage = props => {
     setConfirmPassword(evt.target.value);
   };
 
+  const inputFieldsAreEmpty = () => Object.values(userData).every(value => value.length === 0);
+
   return (
     <Fragment>
       <header className="app-main-header">
@@ -204,7 +206,7 @@ const SignUpPage = props => {
             </FormGroup>
             <FormButton
               classList={addClasses(['q-form__button', 'q-large__button', props.user.requesting && 'default_pointer'])}
-              disabled={props.user.requesting}
+              disabled={props.user.requesting || inputFieldsAreEmpty()}
             >
               Sign Up
               <span className={`${props.user.requesting ? 'loader' : ''}`} />

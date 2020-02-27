@@ -231,6 +231,16 @@
   transition   : box-shadow 0.2s ease, border 0.2s ease,
     -webkit-box-shadow 0.2s ease, background-color 0.2s;
   cursor: pointer;
+
+  &:disabled {
+    background: #999;
+    cursor: default;
+
+    &:hover {
+      background: #999;
+      cursor: default
+    }
+  }
 }
 
 .q-form__button:hover {

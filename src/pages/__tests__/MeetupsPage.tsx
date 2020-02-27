@@ -22,7 +22,7 @@ describe('MeetupsPage Component', () => {
     expect(meetupsPage).toBeTruthy();
   });
 
-  test('it toggles the visibility of the search icon when its clicked', () => {
+  test.skip('it toggles the visibility of the search icon when its clicked', () => {
     const { getByTestId } = render(
       <Provider store={store}>
         <Router>

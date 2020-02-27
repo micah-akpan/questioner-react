@@ -5,19 +5,28 @@ import PropTypes from 'prop-types';
 import searchIcon from '../resources/icons/search.svg';
 import appUtil from '../utils';
 
+
+interface ListItemState {
+  [key:string]: {
+    active: boolean
+  }
+}
+
+const initialState: ListItemState = {
+  'list-item-1': {
+    active: false
+  },
+  'list-item-2': {
+    active: false
+  }
+}
+
 const { addClasses } = appUtil;
 
 const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef }) => {
   let inputRef;
   let searchNavRef;
-  const [listItemIsActive, setListItemIsActive] = useState({
-    'list-item-1': {
-      active: false
-    },
-    'list-item-2': {
-      active: false
-    }
-  });
+  const [listItemIsActive, setListItemIsActive] = useState(initialState);
 
   const toggleNavLink = evt => {
     const selectedButton = evt.target.getAttribute('data-target');
