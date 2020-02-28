@@ -49,7 +49,7 @@ describe('MeetupsPage Component', () => {
     const searchIcon = getByTestId('search-icon');
     const searchFormItem = getByTestId('search-form-list-item');
     fireEvent.click(searchIcon);
-    fireEvent.click(document);
+    fireEvent.click(window);
     expect(searchFormItem.classList.contains('search-bar__link-show')).toEqual(false);
   });
 });

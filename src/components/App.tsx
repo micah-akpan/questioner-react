@@ -2,9 +2,11 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { HomePage, SignUpPage, LoginPage, MeetupsPage } from '../pages';
 import { Footer } from './shared';
+import Header from './shared/Header';
 
 const App = () => (
   <Fragment>
+    <Header />
     <Router>
       <Switch>
         <Route path="/meetups" component={MeetupsPage} />
