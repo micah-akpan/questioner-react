@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const MobileNavTriggerIcon = ({ handleClick, handleKeyPress, classList }) => (
+const MobileNavTriggerIcon = ({ handleClick, handleKeyPress, mobileNavIsVisible }) => (
   <div
-    className={classList}
+    className={`mobile-nav-sidebar__wrapper ${mobileNavIsVisible ? 'change' : ''}`}
     onClick={handleClick}
     onKeyDown={handleKeyPress}
     role="button"
@@ -19,7 +19,8 @@ const MobileNavTriggerIcon = ({ handleClick, handleKeyPress, classList }) => (
 MobileNavTriggerIcon.propTypes = {
   handleClick: PropTypes.func,
   handleKeyPress: PropTypes.func,
-  classList: PropTypes.string
+  classList: PropTypes.string,
+  mobileNavIsVisible: PropTypes.bool.isRequired,
 };
 
 export default MobileNavTriggerIcon;

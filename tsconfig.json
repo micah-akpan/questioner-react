@@ -8,6 +8,6 @@
     "lib": ["ES2015", "DOM", "DOM.Iterable"],
     "sourceMap": true
   },
-  "include": ["src"],
+  "include": ["src/*"],
   "exclude": ["node_modules"]
 }

@@ -18,7 +18,6 @@ describe('Meetup Component', () => {
         <Router>
           <Meetup
             meetup={meetupsMock.meetups[0]}
-            questionCount={0}
           />
         </Router>
       </Provider>

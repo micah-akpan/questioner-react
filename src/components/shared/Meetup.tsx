@@ -10,7 +10,13 @@ import Dropdown from './Dropdown';
 import dropDownItems from '../../utils/dropdown';
 import { getQuestions } from '../../actions/questions';
 
-const Meetup = ({ meetup, getMeetupQuestions, questions }) => {
+interface MeetupProps {
+  meetup: any;
+  getMeetupQuestions: any;
+  questions: any;
+}
+
+const Meetup = ({ meetup, getMeetupQuestions, questions }: MeetupProps) => {
   useEffect(() => {
     getMeetupQuestions(meetup.id);
   }, []);
