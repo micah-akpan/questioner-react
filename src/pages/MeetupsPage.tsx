@@ -1,11 +1,9 @@
-import React, { Fragment, useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import MeetupsPageNavBar from '../components/MeetupsPageNavBar';
 import SearchNav from '../components/SearchNav';
 import Meetups from '../components/shared/Meetups';
 import { getMeetups } from '../actions/meetups';
-import { getQuestions } from '../actions/questions';
 
 const hideSearchForm = (evtTarget, {
   searchFormIsVisible,
@@ -28,7 +26,7 @@ const MeetupsPage = ({ meetups, getMeetups }) => {
         setSearchFormVisibility
       });
     }, false);
-    return window.removeEventListener('click', hideSearchForm);
+    return window.removeEventListener('click', () => {});
   });
 
   useEffect(() => {
@@ -39,16 +37,7 @@ const MeetupsPage = ({ meetups, getMeetups }) => {
     searchNavRef = node;
   };
   return (
-    <Fragment>
-      <header className="app-main-header">
-        <div className="container">
-          <div>
-            <MeetupsPageNavBar
-              classes="header-content header__no-border"
-            />
-          </div>
-        </div>
-      </header>
+    <>
       <SearchNav
         searchFormIsVisible={searchFormIsVisible}
         handleSearchIconClick={
@@ -59,7 +48,7 @@ const MeetupsPage = ({ meetups, getMeetups }) => {
         getSearchNavRef={getSearchNavRef}
       />
       <Meetups meetups={meetups} />
-    </Fragment>
+    </>
   );
 };
 

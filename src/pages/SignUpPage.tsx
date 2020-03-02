@@ -1,13 +1,10 @@
 import React, {
-  Fragment,
   useState,
   useEffect,
   useCallback
 } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import RightNav from '../components/shared/RightNav';
-import NavBar from '../components/NavBar';
 import appUtil from '../utils';
 import {
   Form,
@@ -16,7 +13,6 @@ import {
   FormInputField,
   FormButton
 } from '../components/shared';
-import Footer from '../components/shared/Footer';
 import { signUpUser } from '../actions/auth';
 
 const { addClasses } = appUtil;
@@ -80,21 +76,7 @@ const SignUpPage = props => {
   const inputFieldsAreEmpty = () => Object.values(userData).every(value => value.length === 0);
 
   return (
-    <Fragment>
-      <header className="app-main-header">
-        <div className="container">
-          <NavBar classes={appUtil.addClasses(['q-flex', 'header-content', 'header__no-border'])}>
-            <RightNav>
-              <ul>
-                <span>Are you a member?</span>
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
-              </ul>
-            </RightNav>
-          </NavBar>
-        </div>
-      </header>
+    <>
       <section className="q-form">
         <div className="container">
           <h3 className="get-started-text">Get started with a free account</h3>
@@ -240,7 +222,7 @@ const SignUpPage = props => {
           </p>
         </div>
       </section>
-    </Fragment>
+    </>
   );
 };
 
