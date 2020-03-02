@@ -35,23 +35,27 @@
 
   .shimmer-card, .shimmer-image {
     width: calc(100% / 3 - 20px);
+    margin-bottom: 20px;
   }
 
   .shimmer-card {
     height: 200px;
+    // background-color: #fff;
   }
 
   .shimmer-image {
     height: 140px;
+    width: 100%;
   }
 
   .shimmer-bar {
+    margin: 10px 0;
     height: 10px;
     width: 50%;
   }
 
   .shimmer-bar-1 {
-    width: 60%;
+    width: 40%;
   }
 
   .shimer-bar-2 {

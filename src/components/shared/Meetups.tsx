@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Meetup from './Meetup';
 
 const Meetups = ({ meetups }) => {
-  console.log('meetups: ', meetups)
   return (
     <section className="q-cards" id="q-cards">
       <div className="container">
@@ -15,7 +14,7 @@ const Meetups = ({ meetups }) => {
               {
                 Array(6).fill(0).map(_ => {
                   return (
-                    <div className="shimmer-card loading-card">
+                    <div className="shimmer-card">
                       <div className="shimmer-image loading-card"></div>
                       <div className="shimmer-bar-1 shimmer-bar loading-card"></div>
                       <div className="shimmer-bar-2 shimmer-bar loading-card"></div>
