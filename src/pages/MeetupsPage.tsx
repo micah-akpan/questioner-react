@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import SearchNav from '../components/SearchNav';
 import Meetups from '../components/shared/Meetups';
 import { getMeetups } from '../actions/meetups';
+import { setActivePage } from '../actions/nav';
 
 const hideSearchForm = (evtTarget, {
   searchFormIsVisible,
@@ -15,7 +16,7 @@ const hideSearchForm = (evtTarget, {
   }
 };
 
-const MeetupsPage = ({ meetups, getMeetups }) => {
+const MeetupsPage = ({ meetups, getMeetups, setActivePage }) => {
   let searchNavRef;
   const [searchFormIsVisible, setSearchFormVisibility] = useState(false);
   useEffect(() => {
@@ -30,6 +31,7 @@ const MeetupsPage = ({ meetups, getMeetups }) => {
   });
 
   useEffect(() => {
+    setActivePage()
     getMeetups();
   }, []);
 
@@ -57,4 +59,9 @@ const mapStateToProps = ({ meetups, questions }) => ({
   questions: questions.data
 });
 
-export default connect(mapStateToProps, { getMeetups })(MeetupsPage);
+const mapDispatchToProps = (dispatch) => ({
+  setActivePage: () => dispatch(setActivePage('meetupList')),
+  getMeetups,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MeetupsPage);

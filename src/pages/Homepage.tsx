@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import appUtil from '../utils';
 import {
   GetStartedSection,
@@ -6,10 +7,15 @@ import {
   UpcomingMeetups,
   ShowCase,
 } from '../components';
+import { setActivePage } from '../actions/nav';
 
 const { cards1, cards2 } = appUtil;
 
-const HomePage = () => {
+const HomePage = ({ dispatch }) => {
+  useEffect(() => {
+    dispatch(setActivePage('root'));
+  }, []);
+
   return (
     <>
       <ShowCase />
@@ -29,4 +35,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default connect(null, null)(HomePage);

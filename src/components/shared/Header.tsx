@@ -1,23 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import { Link } from 'react-router-dom';
+import React, { useState, useCallback } from 'react'
 import { connect } from 'react-redux'
-import { getNavItemRequest } from '../../actions/nav';
 import MobileNavTriggerIcon from './MobileNavTriggerIcon';
 import MobileNavMenu from './MobileNavMenu';
-
-
-const pageToUrl = {
-    login: 'login',
-    signup: 'signup',
-    meetups: 'meetupList',
-    '': ''
-}
-
-const getPageType = (): string => {
-    const pageFullUrl = window.location.href
-    const url = pageFullUrl.substr(pageFullUrl.lastIndexOf('/') + 1)
-    return pageToUrl[url]
-}
 
 /**
  * @param {HTMLEvent} event
@@ -35,16 +19,12 @@ const toggleMobileNavVisibility = (event, { navIsVisible, setVisibility }) => {
 
 const Header = (props) => {
     const [mobileNavIsVisible, setMobileNavVisibility] = useState(false);
-    useEffect(() => {
-        props.dispatch(getNavItemRequest(getPageType()))
-    }, [])
 
-    console.log(props.navState)
     return (
         <header className="app-main-header">
             <div className="container">
                 {/* Main Navigation bar */}
-                <nav className={`q-flex header-content ${props.navState[props.activePage].hasLeftNav ? '' : 'header__no-border'}`}>
+                <nav className={`q-flex header-content ${props.navState.hasLeftNav ? '' : 'header__no-border'}`}>
                     <div className="white nav-block">
                         <a href="/" className="nav-block__link main-nav-block__link">
                             <h1 className="q-logo q-logo-border">Questioner</h1>
@@ -52,7 +32,7 @@ const Header = (props) => {
                     </div>
 
                     {
-                        props.navState[props.activePage].hasLeftNav &&
+                        props.navState.hasLeftNav &&
                         <div className="left-nav q-left-nav">
                             <ul className="app-main-nav__list">
                                 <li className="app-main-nav__list__item q-left-nav__list__item">
@@ -63,7 +43,7 @@ const Header = (props) => {
                     }
 
                     {
-                        props.navState.authPage ?
+                        props.navState.isAuthPage ?
                             <div className="right-nav q-right-nav app-main-nav">
                                 <ul className="auth-pages-nav_link">
                                     <span>{props.navState.activePage == 'login' ? 'Not Registered Yet?' : 'Are you a member?'}
@@ -77,7 +57,7 @@ const Header = (props) => {
 
                             <div className={`right-nav q-right-nav app-main-nav ${props.navState.activePage == 'meetupList' ? 'notify-user__nav no-flex' : ''}`}>
                                 <ul>
-                                    {props.navState[props.activePage].links.map(item => (
+                                    {props.navState.links.map(item => (
                                         <li key={item.url}>
                                             {
                                                 item.isIcon ?
@@ -89,7 +69,6 @@ const Header = (props) => {
                                                         <img src={item.iconSrc} alt={item.iconDesc} />
                                                     </button>
                                                     :
-
                                                     <a href={item.url} role="button" aria-label={`${item.title} button`} className={item.className}>{item.title}</a>
                                             }
                                         </li>
@@ -115,9 +94,8 @@ const Header = (props) => {
                     }}
                 />
 
-
                 <MobileNavMenu
-                    links={props.navState[props.activePage].links}
+                    links={props.navState.links}
                     mobileNavIsVisible={mobileNavIsVisible}
                 />
             </div>
@@ -126,8 +104,7 @@ const Header = (props) => {
 }
 
 const mapStateToProps = ({ nav }) => ({
-    navState: nav.pages,
-    activePage: nav.pages.activePage
+    navState: nav.data,
 })
 
 export default connect(mapStateToProps, null)(Header);

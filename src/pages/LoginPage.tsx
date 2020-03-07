@@ -12,6 +12,7 @@ import {
 } from '../components/shared';
 import { signInUser } from '../actions/auth';
 import Validator from 'validatorjs';
+import { setActivePage } from '../actions/nav';
 
 const { addClasses } = appUtil;
 
@@ -35,6 +36,7 @@ const LoginPage = (props) => {
     });
   }
   useEffect(() => {
+    props.setActivePage();
     if (props.user.data) {
       localStorage.setItem('authToken', props.user.data.token)
     }
@@ -161,10 +163,13 @@ const LoginPage = (props) => {
   );
 };
 
-const mapStateToProps = ({ auth }) => {
-  return {
+const mapStateToProps = ({ auth }) => ({
     user: auth
-  }
-};
+})
 
-export default connect(mapStateToProps, { signInUser })(LoginPage);
+const mapDispatchToProps = (dispatch) => ({
+  setActivePage: () => dispatch(setActivePage('login', true)),
+  signInUser,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);

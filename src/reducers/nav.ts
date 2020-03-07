@@ -1,135 +1,33 @@
-import { GET_MEETUP_PAGE_NAV_ITEMS, GET_LOGIN_PAGE_ITEMS, GET_SIGNUP_PAGE_ITEMS, GET_ALL_ROOT_PAGE_NAV_ITEMS } from '../actionTypes/nav'
-import { NavItem } from '../shared/models/nav.model'
+import {
+  SET_ACTIVE_PAGE,
+} from '../actionTypes/nav';
+import { NavInitialState } from '../shared/models/nav.model'
+import { pageToNavItems } from '../shared/mocks/nav.mock'
 
-const initialState = {
-    pages: {
-        '': {
-            links: [],
-            hasLeftNav: true,
-        },
-        meetupList: {
-            links: [],
-            hasLeftNav: false,
-        },
-        login: {
-            links: [],
-            hasLeftNav: false,
-        },
-        signup: {
-            links: [],
-            hasLeftNav: false,
-        },
-        activePage: '',
-    }
-}
+const initialState: NavInitialState = {
+  data: {
+    links: [],
+    hasLeftNav: false,
+    isAuthPage: false,
+    activePage: ''
+  }
+};
 
-export default (state = initialState, { type }) => {
-    switch (type) {
-        case GET_MEETUP_PAGE_NAV_ITEMS:
-            return {
-                ...state,
-                pages: {
-                    ...state.pages,
-                    meetupList: {
-                        ...state.pages.meetupList,
-                        links: [
-                            {
-                                icon: '',
-                                url: '',
-                                title: 'notification',
-                                isIcon: true,
-                                iconSrc: 'src/resources/icons/notifications-button.svg',
-                                iconDesc: 'A gold-colored bell icon'
-                            },
+export default (state = initialState, { type, payload }) => {
+  switch (type) {
+    case SET_ACTIVE_PAGE:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          links: pageToNavItems[payload.pageName],
+          hasLeftNav: payload.hasLeftNav,
+          isAuthPage: payload.isAuthPage,
+          activePage: payload.pageName
+        }
+      };
 
-                            {
-                                icon: '',
-                                url: '',
-                                title: 'profile',
-                                isIcon: true,
-                                iconSrc: 'src/resources/icons/avatar1.svg',
-                                iconDesc: 'An outline of a person\'s face'
-                            }
-                        ]
-                    },
-                    activePage: 'meetupList',
-                    authPage: false,
-                }
-            }
-
-        case GET_LOGIN_PAGE_ITEMS:
-            return {
-                ...state,
-                pages: {
-                    ...state.pages,
-                    login: {
-                        ...state.pages.login,
-                        links: [
-                            {
-                                icon: '',
-                                url: '',
-                                title: 'signup',
-                                isIcon: false
-                            },
-                        ]
-                    },
-                    activePage: 'login',
-                    authPage: true,
-                }
-            }
-
-        case GET_SIGNUP_PAGE_ITEMS:
-            return {
-                ...state,
-                pages: {
-                    ...state.pages,
-                    signup: {
-                        ...state.pages.signup,
-                        links: [
-                            {
-                                icon: '',
-                                url: '',
-                                title: 'login',
-                                isIcon: false
-                            },
-                        ]
-                    },
-                    activePage: 'signup',
-                    authPage: true,
-                }
-            }
-
-        case GET_ALL_ROOT_PAGE_NAV_ITEMS:
-            return {
-                ...state,
-                pages: {
-                    ...state.pages,
-                    '': {
-                        ...state.pages[''],
-                        links: [
-                            {
-                                icon: '',
-                                url: '/login',
-                                title: 'Login',
-                                isIcon: false,
-                                className: 'sign-in',
-                            },
-
-                            {
-                                icon: '',
-                                url: '/signup',
-                                title: 'Sign Up',
-                                isIcon: false,
-                                className: 'sign-up',
-                            },
-                        ]
-                    },
-                    activePage: '',
-                    authPage: false,
-                }
-            }
-
-        default:
-            return state
-    }
-}
+    default:
+      return state;
+  }
+};

@@ -14,6 +14,7 @@ import {
   FormButton
 } from '../components/shared';
 import { signUpUser } from '../actions/auth';
+import { setActivePage } from '../actions/nav';
 
 const { addClasses } = appUtil;
 
@@ -40,10 +41,9 @@ const SignUpPage = props => {
   };
 
   useEffect(() => {
+    props.setActivePage('login')
     if (props.user.data) {
       localStorage.setItem('authToken', props.user.data.token);
-      // sign up was successful
-      // no need displaying the error message
       setSignUpError('');
     }
   }, [props.user.data]);
@@ -230,4 +230,9 @@ const mapStateToProps = ({ auth }) => ({
   user: auth
 });
 
-export default connect(mapStateToProps, { signUpUser })(SignUpPage);
+const mapDispatchToProps = (dispatch) => ({
+  setActivePage: () => dispatch(setActivePage('signup', true)),
+  signUpUser,
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpPage);
