@@ -1,7 +1,13 @@
-import { pageToActionType } from '../actionTypes/nav'
+import { SET_ACTIVE_PAGE } from '../actionTypes/nav'
 
-export const getNavItemRequest = (type: string) => {
+export const setActivePage = (page: string, isAuthPage=false, hasLeftNav=false) => {
     return {
-        type: pageToActionType[type],
+        type: SET_ACTIVE_PAGE,
+        payload: {
+            pageName: page,
+            activePage: page,
+            isAuthPage,
+            hasLeftNav,
+        }
     }
 }
