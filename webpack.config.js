@@ -60,7 +60,7 @@ const config = {
   devtool: 'cheap-eval-source-map',
   devServer: {
     historyApiFallback: true,
-    port: 7777,
+    port: 8080,
     progress: true,
   }
 };

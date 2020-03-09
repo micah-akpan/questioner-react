@@ -32,8 +32,8 @@
 /* Shimmer / Loading Cards */
 
 .shimmer-cards {
-
-  .shimmer-card, .shimmer-image {
+  .shimmer-card,
+  .shimmer-image {
     width: calc(100% / 3 - 20px);
     margin-bottom: 20px;
   }
@@ -363,6 +363,48 @@ nav.no-flex {
 }
 
 .meetups-search-type-list__item--inactive {
+}
+
+// Meetup Detail page
+.q-meetup-details__primary {
+  margin-top: 200px;
+  width: 100%;
+  color: black;
+
+  .details {
+    position: relative;
+
+    .title-block {
+      margin-left: 100px;
+
+      .title {
+        font-size: 2rem;
+        text-transform: capitalize;
+        text-align: left;
+      }
+
+      .host {
+        position: relative;
+        top: -30px;
+        left: 0;
+        text-transform: capitalize;
+      }
+    }
+
+    .date {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 50px;
+      background-color: #116466;
+      text-align: center;
+      padding: 20px 0;
+      color: #ffffff;
+      border-radius: 3px;
+      border: none;
+    }
+  }
 }
 
 @media (max-width: 768px) {
