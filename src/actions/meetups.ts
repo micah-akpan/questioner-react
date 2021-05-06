@@ -20,12 +20,24 @@ export const getMeetupsFailure = error => ({
   payload: error
 });
 
-export const getMeetups = () => async dispatch => {
-  try {
-    dispatch(getMeetupsRequest);
-    const { data } = await fetchAllMeetups();
-    dispatch(getMeetupsSuccess(data));
-  } catch (ex) {
-    dispatch(getMeetupsFailure(ex));
+// export const getMeetups = () => async dispatch => {
+//   try {
+//     dispatch(getMeetupsRequest);
+//     const { data } = await fetchAllMeetups();
+//     dispatch(getMeetupsSuccess(data));
+//   } catch (ex) {
+//     dispatch(getMeetupsFailure(ex));
+//   }
+// };
+
+export const getMeetups = () => {
+  return async function (dispatch) {
+    try {
+      dispatch(getMeetupsRequest);
+      const { data } = await fetchAllMeetups();
+      dispatch(getMeetupsSuccess(data));
+    } catch (ex) {
+      dispatch(getMeetupsFailure(ex));
+    }
   }
-};
+}

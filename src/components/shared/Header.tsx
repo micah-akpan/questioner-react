@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from 'react'
+import React, { useReducer } from 'react'
 import { connect } from 'react-redux'
-import MobileNavTriggerIcon from './MobileNavTriggerIcon';
 import MobileNavMenu from './MobileNavMenu';
 
 /**
@@ -18,7 +17,10 @@ const toggleMobileNavVisibility = (event, { navIsVisible, setVisibility }) => {
 
 
 const Header = (props) => {
-    const [mobileNavIsVisible, setMobileNavVisibility] = useState(false);
+    const [mobileNavIsVisible, setMobileNavVisibility] = useReducer(
+        state => !state,
+        false
+    )
 
     return (
         <header className="app-main-header">
@@ -77,22 +79,25 @@ const Header = (props) => {
                             </div>
                     }
                 </nav>
-                {/* Main Navigation bar --- ends */}
-
-                <MobileNavTriggerIcon
-                    mobileNavIsVisible={mobileNavIsVisible}
-                    handleClick={
-                        useCallback(() => {
-                            setMobileNavVisibility(!mobileNavIsVisible);
-                        }, [])
+                <div
+                    className={`mobile-nav-sidebar__wrapper ${mobileNavIsVisible ? 'change' : ''}`}
+                    onClick={() => setMobileNavVisibility()}
+                    onKeyDown={
+                        e => {
+                            toggleMobileNavVisibility(e, {
+                                navIsVisible: mobileNavIsVisible,
+                                setVisibility: setMobileNavVisibility
+                            });
+                        }
                     }
-                    handleKeyPress={e => {
-                        toggleMobileNavVisibility(e, {
-                            navIsVisible: mobileNavIsVisible,
-                            setVisibility: setMobileNavVisibility
-                        });
-                    }}
-                />
+                    role="button"
+                    tabIndex={0}
+                    data-testid="mobile-nav-trigger-icon"
+                >
+                    <div className="menu-bar1" />
+                    <div className="menu-bar2" />
+                    <div className="menu-bar3" />
+                </div>
 
                 <MobileNavMenu
                     links={props.navState.links}

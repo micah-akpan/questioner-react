@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UnusedWebpackPlugin = require('unused-webpack-plugin');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
@@ -55,6 +56,12 @@ const config = {
     new MiniCssExtractPlugin({
       filename: isDevelopment ? '[name].css' : '[name].[hash].css',
       chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
+    }),
+    new UnusedWebpackPlugin({
+      directories: [path.join(__dirname, 'src')],
+      // Exclude patterns
+      exclude: ['src/**/__tests__/*'],
+      root: __dirname,
     })
   ],
   devtool: 'cheap-eval-source-map',
