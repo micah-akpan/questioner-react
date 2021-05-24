@@ -1,0 +1,9 @@
+Roadmap for this project
+- Revamp the mobile sidebar UI
+- Refactor the styling to use a styleguide = BEM styleguide
+- Refactor complex local state management to use hooks such as 'useReducer' to simplify state management
+- Integrate GraphQL
+- Implement SSR + SSG with Nextjs
+- Integrate i18n with Nextjs
+- Integrate a new CSS Library (Tailwind)
+- 
