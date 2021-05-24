@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { getMeetups } from '../actions/meetups';
-import Card from './shared/Card';
 import CardTop from './shared/CardTop';
 import CardBottom from './shared/CardBottom';
-import image from '../resources/images/startup-meetup2.jpg';
 
 const UpcomingMeetups = ({ meetups, getMeetups }) => {
   useEffect(() => {
@@ -16,12 +14,12 @@ const UpcomingMeetups = ({ meetups, getMeetups }) => {
         <h3 className="heading-sec__primary">See meetups near you</h3>
         <div className="cards">
           {meetups.map(meetup => (
-            <Card classList={['q-card q-card__no-border']}>
+            <div key={meetup.id} className="q-card q-card__no-border">
               <CardTop>
                 <div className="q-card__image-container">
                   <img
-                    src={image}
-                    alt="A meetup"
+                    src="https://questioner-storage.s3.us-east-2.amazonaws.com/images/home/startup-meetup.jpg"
+                    alt=""
                     className="q-card__image"
                   />
                 </div>
@@ -42,7 +40,7 @@ const UpcomingMeetups = ({ meetups, getMeetups }) => {
                   </div>
                 </div>
               </CardBottom>
-            </Card>
+            </div>
           ))}
         </div>
       </div>

@@ -65,7 +65,7 @@
     "test": "jest",
     "test:watch": "jest --watchAll",
     "test:coverage": "SEND_REPORT_COVERALLS=yes jest | coveralls",
-    "dev": "webpack-dev-server --mode development --open",
+    "dev": "NODE_ENV=development webpack-dev-server --mode development",
     "start": "node server.js",
     "build": "webpack --mode production",
     "lint": "eslint ./src",
