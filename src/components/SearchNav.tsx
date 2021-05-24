@@ -1,8 +1,5 @@
-/* eslint-disable */
-
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import searchIcon from '../resources/icons/search.svg';
 import appUtil from '../utils';
 
 
@@ -57,7 +54,7 @@ const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef
                 data-testid="search-icon"
               >
                 <img
-                  src={searchIcon}
+                  src=""
                   alt="A magnifying glass icon"
                 />
               </button>

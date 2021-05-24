@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import Card from './Card';
 import CardTop from './CardTop';
 import CardBottom from './CardBottom';
-import mainMeetupImage from '../../resources/images/andela.jpeg';
 import { parseDate } from '../../utils';
 import Dropdown from './Dropdown';
 import dropDownItems from '../../utils/dropdown';
@@ -39,7 +38,7 @@ const Meetup = ({ meetup, getMeetupQuestions, questions }: MeetupProps) => {
             <div className="q-card__image-container">
               <Dropdown dropDownItems={dropDownItems} />
               <img
-                src={mainMeetupImage}
+                src="https://questioner-storage.s3.us-east-2.amazonaws.com/images/home/andela.jpeg"
                 alt="A meetup"
                 className="q-card__image meetup-main-image"
               />

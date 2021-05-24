@@ -55,13 +55,14 @@ const config = {
     new MiniCssExtractPlugin({
       filename: isDevelopment ? '[name].css' : '[name].[hash].css',
       chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
-    })
+    }),
   ],
   devtool: 'cheap-eval-source-map',
   devServer: {
     historyApiFallback: true,
-    port: 7777,
+    port: 5000,
     progress: true,
+    open: false
   }
 };
 

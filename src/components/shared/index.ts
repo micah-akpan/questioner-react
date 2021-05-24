@@ -10,7 +10,6 @@ import CardTop from './CardTop';
 import CardBottom from './CardBottom';
 import FormButton from './FormButton';
 import MobileNavMenu from './MobileNavMenu';
-import MobileNavTriggerIcon from './MobileNavTriggerIcon';
 import Footer from './Footer';
 import Meetup from './Meetup';
 import Meetups from './Meetups';
@@ -29,7 +28,6 @@ export {
   CardBottom,
   FormButton,
   MobileNavMenu,
-  MobileNavTriggerIcon,
   Footer,
   Meetup,
   Meetups,
