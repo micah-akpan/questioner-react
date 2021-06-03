@@ -99,6 +99,6 @@
   },
   "homepage": "https://github.com/micah-akpan/questioner-react#readme",
   "engines": {
-    "node": ">=6"
+    "node": "12"
   }
 }
