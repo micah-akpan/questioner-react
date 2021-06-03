@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { HomePage, SignUpPage, LoginPage, MeetupsPage, MeetupDetailPage } from '../pages';
 import { Footer } from './shared';
 import Header from './shared/Header';
 
 const App = () => (
-  <Fragment>
+  <>
     <Header />
     <Router>
       <Switch>
@@ -17,7 +17,7 @@ const App = () => (
       </Switch>
     </Router>
     <Footer />
-  </Fragment>
+  </>
 );
 
 export default App;
