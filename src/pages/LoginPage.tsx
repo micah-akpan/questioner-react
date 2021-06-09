@@ -6,6 +6,8 @@ import { signInUser } from '../actions/auth';
 import Validator from 'validatorjs';
 import { setActivePage } from '../actions/nav';
 import { gql, useMutation } from '@apollo/client'
+import { AUTH_TOKEN } from '../constants';
+import { useHistory } from 'react-router'
 
 const rules = {
   email: 'required|email',
@@ -16,6 +18,9 @@ const LoginPage = (props) => {
   const [passwordIsVisible, setPasswordVisibility] = useState(false);
   const [userData, setUserData] = useState({ email: '', password: '' });
   const [validationErrors, setValidationErrors] = useState({ email: null, password: null });
+  const [loginError, setLoginError] = useState('')
+
+  // const history = useHistory()
 
   const LOGIN_MUTATION = gql`
     mutation LoginMutation(
@@ -34,8 +39,14 @@ const LoginPage = (props) => {
       password: userData.password
     },
     onCompleted: ({ login }) => {
-      console.log('token: ', login.token)
+      localStorage.setItem(AUTH_TOKEN, login.token)
+
+      // Redirect to the home page here
+      // history.push('/')
     },
+    onError: (error) => {
+      setLoginError(error.message)
+    }
   })
 
   const handleTextChange = evt => {
@@ -59,7 +70,8 @@ const LoginPage = (props) => {
     evt.preventDefault();
     const validation = new Validator(userData, rules);
     if (validation.passes()) {
-      props.signInUser(userData);
+      login()
+      // props.signInUser(userData);
     } else {
       console.log('fails....')
       const emailValidationError = validation.errors.first('email');
@@ -78,6 +90,7 @@ const LoginPage = (props) => {
         <h3>Log In To Questioner</h3>
         <p className="welcome-back-msg">Welcome back</p>
 
+        <p className="input-validation-feedback">{loginError}</p>
         <form onSubmit={handleFormSubmit}>
           <div className='q-form__group'>
             <label htmlFor="userEmail" className="q-form__label">Email
