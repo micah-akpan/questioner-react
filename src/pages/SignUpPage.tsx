@@ -7,8 +7,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUpUser } from '../actions/auth';
 import { setActivePage } from '../actions/nav';
+import { gql, useMutation } from '@apollo/client'
+import { AUTH_TOKEN } from '../constants';
 
 const SignUpPage = props => {
+
   const [userData, setUserData] = useState({
     firstname: '',
     lastname: '',
@@ -22,12 +25,48 @@ const SignUpPage = props => {
 
   const { firstname, lastname, email, password } = userData;
 
+  const SIGNUP_MUTATION = gql`
+  mutation SignupMutation(
+    $email: String!
+    $password: String!
+    $firstname: String!,
+    $lastname: String!
+  ) {
+    signup(
+      email: $email
+      password: $password
+      firstname: $firstname
+      lastname: $lastname
+    ) {
+      token
+      user {
+        id
+      }
+    }
+  }
+`
+
+  const [signup] = useMutation(SIGNUP_MUTATION, {
+    variables: {
+      ...userData
+    },
+    onCompleted: ({ signup }) => {
+      localStorage.setItem(AUTH_TOKEN, signup.token)
+      // Redirect to the home page
+    },
+
+    onError: (error) => {
+      setSignUpError(error.message)
+    }
+  })
+
   const handleFormSubmit = evt => {
     evt.preventDefault();
     if (confirmPassword !== password) {
       return;
     }
-    props.signUpUser(userData);
+    // props.signUpUser(userData);
+    signup()
   };
 
   useEffect(() => {
