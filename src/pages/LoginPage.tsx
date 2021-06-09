@@ -2,29 +2,41 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import appUtil from '../utils';
-import {
-  Form,
-  FormGroup,
-  FormLabel,
-  FormInputField,
-  FormButton
-} from '../components/shared';
 import { signInUser } from '../actions/auth';
 import Validator from 'validatorjs';
 import { setActivePage } from '../actions/nav';
-
-const { addClasses } = appUtil;
+import { gql, useMutation } from '@apollo/client'
 
 const rules = {
   email: 'required|email',
-  password: 'required|min:8'
+  password: 'required'
 };
 
 const LoginPage = (props) => {
   const [passwordIsVisible, setPasswordVisibility] = useState(false);
   const [userData, setUserData] = useState({ email: '', password: '' });
   const [validationErrors, setValidationErrors] = useState({ email: null, password: null });
+
+  const LOGIN_MUTATION = gql`
+    mutation LoginMutation(
+      $email: String!,
+      $password: String!
+    ) {
+      login(email: $email, password: $password) {
+        token
+      }
+    }
+  `
+
+  const [login] = useMutation(LOGIN_MUTATION, {
+    variables: {
+      email: userData.email,
+      password: userData.password
+    },
+    onCompleted: ({ login }) => {
+      console.log('token: ', login.token)
+    },
+  })
 
   const handleTextChange = evt => {
     const { name, value } = evt.target;
@@ -38,6 +50,7 @@ const LoginPage = (props) => {
   useEffect(() => {
     props.setActivePage();
     if (props.user.data) {
+      console.log('never gets called....')
       localStorage.setItem('authToken', props.user.data.token)
     }
   }, [props.user.data])
@@ -48,6 +61,7 @@ const LoginPage = (props) => {
     if (validation.passes()) {
       props.signInUser(userData);
     } else {
+      console.log('fails....')
       const emailValidationError = validation.errors.first('email');
       const passwordValidationError = validation.errors.first('password');
       setValidationErrors({
@@ -64,17 +78,17 @@ const LoginPage = (props) => {
         <h3>Log In To Questioner</h3>
         <p className="welcome-back-msg">Welcome back</p>
 
-        <Form handleFormSubmit={handleFormSubmit}>
-          <FormGroup classList={addClasses(['q-form__group'])}>
-            <FormLabel idText="userEmail" className="q-form__label" labelText="Email">
+        <form onSubmit={handleFormSubmit}>
+          <div className='q-form__group'>
+            <label htmlFor="userEmail" className="q-form__label">Email
               <abbr title="required">*</abbr>
-            </FormLabel>
-            <FormInputField
+            </label>
+            <input
               name="email"
               type="text" // email type is overridden here to provide a better validation error
               placeholder="dennisritchie@email.com"
               id="userEmail"
-              classes={addClasses(['q-form__input'])}
+              className='q-form__input'
               onChange={handleTextChange}
               value={email}
               required
@@ -82,18 +96,19 @@ const LoginPage = (props) => {
             <span className="input-validation-feedback email-validation">
               {validationErrors.email}
             </span>
-          </FormGroup>
-          <FormGroup classList={addClasses(['q-form__group', 'password-input'])}>
-            <FormLabel idText="userPwd" className="q-form__label" labelText="Password">
+          </div>
+
+          <div className='q-form__group password-input'>
+            <label htmlFor="userPwd" className="q-form__label">
+              Password
               <abbr title="required">*</abbr>
-            </FormLabel>
-            <FormInputField
+            </label>
+            <input
               name="password"
               type={passwordIsVisible ? 'text' : 'password'}
               placeholder="**************"
               id="userPwd"
-              classes={addClasses(['q-form__input'])}
-              pattern="(?=.*\d)(?=.*[a-z]).{8,}"
+              className='q-form__input'
               autoComplete="off"
               onChange={handleTextChange}
               value={password}
@@ -122,17 +137,16 @@ const LoginPage = (props) => {
                 Forgot password?
                 </a>
             </span>
-          </FormGroup>
-          <FormButton
-            classList={addClasses([
-              'q-form__button', 'q-large__button',
-              props.user.requesting && 'default_pointer'
-            ])}
+          </div>
+
+          <button
+            type="submit"
+            className={`q-form__button q-large__button ${props.user.requesting ? 'default_pointer' : ''}`}
             disabled={props.user.requesting}>
             Login
-                <span className={`${props.user.requesting ? 'loader' : ''}`}></span>
-          </FormButton>
-        </Form>
+            <span className={`${props.user.requesting ? 'loader' : ''}`}></span>
+          </button>
+        </form>
         <div className="social-media__links--option-rule">
           <span className="social-media__links--signup-option">OR</span>
         </div>
@@ -164,12 +178,12 @@ const LoginPage = (props) => {
 };
 
 const mapStateToProps = ({ auth }) => ({
-    user: auth
+  user: auth
 })
 
 const mapDispatchToProps = (dispatch) => ({
   setActivePage: () => dispatch(setActivePage('login', true)),
-  signInUser,
+  signInUser: (userData) => dispatch(signInUser(userData))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPage);
