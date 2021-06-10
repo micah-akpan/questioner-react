@@ -7,7 +7,6 @@ import CardBottom from './CardBottom';
 import MobileNavMenu from './MobileNavMenu';
 import Footer from './Footer';
 import Meetup from './Meetup';
-import Meetups from './Meetups';
 import Dropdown from './Dropdown';
 
 export {
@@ -20,6 +19,5 @@ export {
   MobileNavMenu,
   Footer,
   Meetup,
-  Meetups,
   Dropdown
 };

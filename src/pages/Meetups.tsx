@@ -1,55 +1,46 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import SearchNav from '../components/SearchNav';
-import Meetups from '../components/shared/Meetups';
 import { getMeetups } from '../actions/meetups';
 import { setActivePage } from '../actions/nav';
-
-const hideSearchForm = (evtTarget, {
-  searchFormIsVisible,
-  setSearchFormVisibility,
-  searchNavRef
-}) => {
-  if (searchNavRef && !searchNavRef.contains(evtTarget) && searchFormIsVisible) {
-    setSearchFormVisibility(false);
-  }
-};
+import SearchNav from '../components/SearchNav';
+import Meetup from '../components/shared/Meetup';
 
 const MeetupsPage = ({ meetups, getMeetups, setActivePage }) => {
-  let searchNavRef;
-  const [searchFormIsVisible, setSearchFormVisibility] = useState(false);
-  useEffect(() => {
-    window.addEventListener('click', evt => {
-      hideSearchForm(evt.target, {
-        searchFormIsVisible,
-        searchNavRef,
-        setSearchFormVisibility
-      });
-    }, false);
-    return window.removeEventListener('click', () => {});
-  });
-
   useEffect(() => {
     setActivePage()
     getMeetups();
   }, []);
 
-  const getSearchNavRef = node => {
-    searchNavRef = node;
-  };
   return (
     <>
-      <SearchNav
-        searchFormIsVisible={searchFormIsVisible}
-        handleSearchIconClick={
-          useCallback(() => {
-            setSearchFormVisibility(!searchFormIsVisible);
-          }, [])
-        }
-        getSearchNavRef={getSearchNavRef}
-      />
-      <Meetups meetups={meetups} />
+      <SearchNav />
+
+      <section className="q-cards" id="q-cards">
+        <div className="container">
+          {/* Data loader placeholder */}
+          {
+            meetups == null ?
+              <div className="cards shimmer-cards">
+                {
+                  Array(6).fill(0).map((_, i) => {
+                    return (
+                      <div className="shimmer-card" key={i.toString()}>
+                        <div className="shimmer-image loading-card"></div>
+                        <div className="shimmer-bar-1 shimmer-bar loading-card"></div>
+                        <div className="shimmer-bar-2 shimmer-bar loading-card"></div>
+                      </div>
+                    )
+                  })
+                }
+              </div> :
+              <div className="cards">
+                {meetups.map(meetup => (
+                  <Meetup meetup={meetup} key={meetup.id} />
+                ))}
+              </div>
+          }
+        </div>
+      </section>
     </>
   );
 };
