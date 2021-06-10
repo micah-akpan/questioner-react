@@ -2,12 +2,7 @@ import React, { useReducer } from 'react'
 import { connect } from 'react-redux'
 import MobileNavMenu from './MobileNavMenu';
 
-/**
- * @param {HTMLEvent} event
- * @param {object} opts
- * @returns {void}
- * @description Toggles mobile nav visibility with the 'Esc' key
- */
+
 const toggleMobileNavVisibility = (event, { navIsVisible, setVisibility }) => {
     const escapeKeyCode = 27;
     if ((event.key === 'Escape' || event.keyCode === escapeKeyCode) && navIsVisible) {
