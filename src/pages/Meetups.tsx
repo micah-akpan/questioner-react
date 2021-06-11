@@ -4,6 +4,7 @@ import { getMeetups } from '../actions/meetups';
 import { setActivePage } from '../actions/nav';
 import SearchNav from '../components/SearchNav';
 import Meetup from '../components/shared/Meetup';
+import ContentLoader from 'react-content-loader'
 
 const MeetupsPage = ({ meetups, getMeetups, setActivePage }) => {
   useEffect(() => {
@@ -19,15 +20,17 @@ const MeetupsPage = ({ meetups, getMeetups, setActivePage }) => {
         <div className="container">
           {/* Data loader placeholder */}
           {
-            meetups == null ?
+            meetups.length == 0 || meetups == null ?
               <div className="cards shimmer-cards">
                 {
                   Array(6).fill(0).map((_, i) => {
                     return (
                       <div className="shimmer-card" key={i.toString()}>
-                        <div className="shimmer-image loading-card"></div>
-                        <div className="shimmer-bar-1 shimmer-bar loading-card"></div>
-                        <div className="shimmer-bar-2 shimmer-bar loading-card"></div>
+                        <ContentLoader viewBox="0 0 380 200" speed={2}>
+                          <rect x="0" y="0" rx="5" ry="5" width="360" height="150" />
+                          <rect x="0" y="155" rx="4" ry="4" width="360" height="25" />
+                          <rect x="0" y="185" rx="3" ry="3" width="300" height="15" />
+                        </ContentLoader>
                       </div>
                     )
                   })
