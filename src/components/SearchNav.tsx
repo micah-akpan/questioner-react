@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import appUtil from '../utils';
-
+import React, { useEffect, useRef, useState } from 'react';
+import searchIcon from '../resources/icons/search.svg'
 
 interface ListItemState {
-  [key:string]: {
+  [key: string]: {
     active: boolean
   }
 }
@@ -18,12 +16,11 @@ const initialState: ListItemState = {
   }
 }
 
-const { addClasses } = appUtil;
-
-const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef }) => {
-  let inputRef;
-  let searchNavRef;
+const SearchNav = () => {
+  let inputRef = useRef();
+  let searchNavRef = useRef();
   const [listItemIsActive, setListItemIsActive] = useState(initialState);
+  const [searchFormIsVisible, setSearchFormVisibility] = useState(false);
 
   const toggleNavLink = evt => {
     const selectedButton = evt.target.getAttribute('data-target');
@@ -35,13 +32,24 @@ const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef
   };
 
   useEffect(() => {
-    inputRef.focus();
+    addEventListener('click', evt => {
+      console.log(searchNavRef.current?.contains(evt.target))
+      if (searchNavRef.current && !searchNavRef.current?.contains(evt.target) 
+        && searchFormIsVisible) {
+          setSearchFormVisibility(false)
+        }
+    });
+    return () => removeEventListener('click', () => { });
+  });
+
+  useEffect(() => {
+    inputRef.current?.focus();
   }, [searchFormIsVisible])
   return (
-    <section 
-      id="q-search" 
-      className="q-search" 
-      ref={node => { getSearchNavRef(node); }}
+    <section
+      id="q-search"
+      className="q-search"
+      ref={searchNavRef}
     >
       <div className="container">
         <nav className="q-search__nav">
@@ -50,18 +58,18 @@ const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef
               <button
                 id="search-icon"
                 type="button"
-                onClick={handleSearchIconClick}
+                onClick={() => setSearchFormVisibility(!searchFormIsVisible)}
                 data-testid="search-icon"
               >
                 <img
-                  src=""
+                  src={searchIcon}
                   alt="A magnifying glass icon"
                 />
               </button>
             </li>
 
-            <li 
-              className={addClasses(['search-bar__link', searchFormIsVisible && 'search-bar__link-show'])}
+            <li
+              className={`search-bar__link ${searchFormIsVisible ? 'search-bar__link-show' : ''}`}
               data-testid="search-form-list-item"
             >
               <form>
@@ -71,7 +79,7 @@ const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef
                   placeholder="Search Meetups"
                   className={searchFormIsVisible ? 'show_input' : ''}
                   autoComplete="off"
-                  ref={node => { inputRef = node; }}
+                  ref={inputRef}
                 />
               </form>
             </li>
@@ -93,7 +101,7 @@ const SearchNav = ({ handleSearchIconClick, searchFormIsVisible, getSearchNavRef
                 data-target="list-item-2"
                 onClick={toggleNavLink}
                 className={listItemIsActive['list-item-2'] && listItemIsActive['list-item-2'].active ? 'active_link' : ''}>
-                 Favorites
+                Favorites
                 </button>
             </li>
           </ul>

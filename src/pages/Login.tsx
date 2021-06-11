@@ -1,13 +1,12 @@
 /* eslint-disable */
 import React, { useState, useCallback, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signInUser } from '../actions/auth';
 import Validator from 'validatorjs';
 import { setActivePage } from '../actions/nav';
 import { gql, useMutation } from '@apollo/client'
 import { AUTH_TOKEN } from '../constants';
-import { useHistory } from 'react-router'
 
 const rules = {
   email: 'required|email',
@@ -19,8 +18,9 @@ const LoginPage = (props) => {
   const [userData, setUserData] = useState({ email: '', password: '' });
   const [validationErrors, setValidationErrors] = useState({ email: null, password: null });
   const [loginError, setLoginError] = useState('')
+  const [requesting, setRequesting] = useState(false)
 
-  // const history = useHistory()
+  const history = useHistory()
 
   const LOGIN_MUTATION = gql`
     mutation LoginMutation(
@@ -40,11 +40,12 @@ const LoginPage = (props) => {
     },
     onCompleted: ({ login }) => {
       localStorage.setItem(AUTH_TOKEN, login.token)
-
-      // Redirect to the home page here
-      // history.push('/')
+      setLoginError('')
+      setRequesting(false)
+      history.push('/meetups')
     },
     onError: (error) => {
+      setRequesting(false)
       setLoginError(error.message)
     }
   })
@@ -58,22 +59,26 @@ const LoginPage = (props) => {
       [name]: validation.errors.first(name)
     });
   }
+
+  useEffect(() => {
+    const token = localStorage.getItem(AUTH_TOKEN)
+    if (token) {
+      history.push('/meetups')
+    }
+  })
+
   useEffect(() => {
     props.setActivePage();
-    if (props.user.data) {
-      console.log('never gets called....')
-      localStorage.setItem('authToken', props.user.data.token)
-    }
   }, [props.user.data])
 
   const handleFormSubmit = evt => {
     evt.preventDefault();
     const validation = new Validator(userData, rules);
     if (validation.passes()) {
+      setRequesting(true)
       login()
       // props.signInUser(userData);
     } else {
-      console.log('fails....')
       const emailValidationError = validation.errors.first('email');
       const passwordValidationError = validation.errors.first('password');
       setValidationErrors({
@@ -90,7 +95,7 @@ const LoginPage = (props) => {
         <h3>Log In To Questioner</h3>
         <p className="welcome-back-msg">Welcome back</p>
 
-        <p className="input-validation-feedback">{loginError}</p>
+        <p className="input-validation-feedback" style={{color: '#ff2222'}}>{loginError}</p>
         <form onSubmit={handleFormSubmit}>
           <div className='q-form__group'>
             <label htmlFor="userEmail" className="q-form__label">Email
@@ -154,10 +159,10 @@ const LoginPage = (props) => {
 
           <button
             type="submit"
-            className={`q-form__button q-large__button ${props.user.requesting ? 'default_pointer' : ''}`}
-            disabled={props.user.requesting}>
+            className={`q-form__button q-large__button ${requesting ? 'default_pointer' : ''}`}
+            disabled={requesting}>
             Login
-            <span className={`${props.user.requesting ? 'loader' : ''}`}></span>
+            <span className={`${requesting ? 'loader' : ''}`}></span>
           </button>
         </form>
         <div className="social-media__links--option-rule">

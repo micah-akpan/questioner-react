@@ -1,8 +1,8 @@
-import HomePage from './Homepage';
-import LoginPage from './LoginPage';
-import MeetupsPage from './MeetupsPage';
-import SignUpPage from './SignUpPage';
-import MeetupDetailPage from './MeetupDetailPage'
+import Home from './Home';
+import Login from './Login';
+import Meetups from './Meetups';
+import SignUp from './SignUp';
+import MeetupDetail from './MeetupDetail'
 
 
-export { HomePage, SignUpPage, LoginPage, MeetupsPage, MeetupDetailPage };
+export { Home, SignUp, Login, Meetups, MeetupDetail };

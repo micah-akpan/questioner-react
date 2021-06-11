@@ -3,7 +3,7 @@ import React, {
   useEffect,
   useCallback
 } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { signUpUser } from '../actions/auth';
 import { setActivePage } from '../actions/nav';
@@ -24,6 +24,9 @@ const SignUpPage = props => {
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const { firstname, lastname, email, password } = userData;
+  const [requesting, setRequesting] = useState(false)
+
+  const history = useHistory()
 
   const SIGNUP_MUTATION = gql`
   mutation SignupMutation(
@@ -52,10 +55,13 @@ const SignUpPage = props => {
     },
     onCompleted: ({ signup }) => {
       localStorage.setItem(AUTH_TOKEN, signup.token)
-      // Redirect to the home page
+      setRequesting(false)
+      setSignUpError('')
+      history.push('/meetups')
     },
 
     onError: (error) => {
+      setRequesting(false)
       setSignUpError(error.message)
     }
   })
@@ -66,22 +72,13 @@ const SignUpPage = props => {
       return;
     }
     // props.signUpUser(userData);
+    setRequesting(true)
     signup()
   };
 
   useEffect(() => {
     props.setActivePage('login')
-    if (props.user.data) {
-      localStorage.setItem('authToken', props.user.data.token);
-      setSignUpError('');
-    }
   }, [props.user.data]);
-
-  useEffect(() => {
-    if (props.user.error) {
-      setSignUpError(props.user.error.error);
-    }
-  }, [props.user.error]);
 
   useEffect(() => {
     const timerId = setTimeout(() => {
@@ -101,8 +98,6 @@ const SignUpPage = props => {
   const handleConfirmPwdChange = evt => {
     setConfirmPassword(evt.target.value);
   };
-
-  const inputFieldsAreEmpty = () => Object.values(userData).every(value => value.length === 0);
 
   return (
     <section className="q-form">
@@ -227,11 +222,11 @@ const SignUpPage = props => {
           </div>
 
           <button
-            className={`q-form__button q-large__button ${props.user.requesting ? 'default_pointer' : ''}`}
-            disabled={props.user.requesting || inputFieldsAreEmpty()}
+            className={`q-form__button q-large__button ${requesting ? 'default_pointer' : ''}`}
+            disabled={requesting}
           >
             Sign Up
-              <span className={`${props.user.requesting ? 'loader' : ''}`} />
+              <span className={`${requesting ? 'loader' : ''}`} />
           </button>
         </form>
         <div className="social-media__links--option-rule">
