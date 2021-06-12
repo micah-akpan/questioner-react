@@ -18,7 +18,6 @@ const initialState: ListItemState = {
 
 const SearchNav = () => {
   let inputRef = useRef();
-  let searchNavRef = useRef();
   const [listItemIsActive, setListItemIsActive] = useState(initialState);
   const [searchFormIsVisible, setSearchFormVisibility] = useState(false);
 
@@ -32,24 +31,20 @@ const SearchNav = () => {
   };
 
   useEffect(() => {
-    addEventListener('click', evt => {
-      console.log(searchNavRef.current?.contains(evt.target))
-      if (searchNavRef.current && !searchNavRef.current?.contains(evt.target) 
-        && searchFormIsVisible) {
-          setSearchFormVisibility(false)
-        }
+    addEventListener('click', () => {
+      if (searchFormIsVisible) setSearchFormVisibility(false)
     });
-    return () => removeEventListener('click', () => { });
+    return () => removeEventListener('click', () => null);
   });
 
   useEffect(() => {
-    inputRef.current?.focus();
+    inputRef?.current?.focus();
   }, [searchFormIsVisible])
+  
   return (
     <section
       id="q-search"
       className="q-search"
-      ref={searchNavRef}
     >
       <div className="container">
         <nav className="q-search__nav">
@@ -58,7 +53,11 @@ const SearchNav = () => {
               <button
                 id="search-icon"
                 type="button"
-                onClick={() => setSearchFormVisibility(!searchFormIsVisible)}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setSearchFormVisibility(!searchFormIsVisible)
+                }
+                }
                 data-testid="search-icon"
               >
                 <img
