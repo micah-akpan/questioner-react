@@ -1,23 +1,25 @@
+import { gql, useQuery } from '@apollo/client';
 import React, { useEffect, useState } from 'react';
+import ContentLoader from 'react-content-loader';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getMeetups } from '../actions/meetups';
 import { setActivePage } from '../actions/nav';
 import SearchNav from '../components/SearchNav';
 import Meetup from '../components/shared/Meetup';
-import ContentLoader from 'react-content-loader'
-import { gql, useQuery } from '@apollo/client'
 import { LINKS_PER_PAGE } from '../constants';
-import { useHistory } from 'react-router-dom'
 
-const MeetupsPage = ({ meetups, getMeetups, setActivePage }) => {
+const MeetupsPage = ({ setActivePage, meetupSearchFilter }) => {
   const history = useHistory()
-  
+  const [requestedSearch, setRequestedSearch] = useState(false)
+
   const MEETUP_QUERY = gql`
     query MeetupQuery(
       $take: Int
       $orderBy: String
+      $filter: String
     ) {
-      meetups(take: $take, orderBy: $orderBy) {
+      meetups(take: $take, orderBy: $orderBy, filter: $filter) {
         id
         topic
         happeningOn
@@ -25,26 +27,45 @@ const MeetupsPage = ({ meetups, getMeetups, setActivePage }) => {
     }
   `
 
-  const getQueryVariables = (page: number) => {
+  const getQueryVariables = (page: number, filter = '') => {
     const take = page > 0 ? page * LINKS_PER_PAGE : 0
     const orderBy = 'happeningOn'
-    return { take, orderBy }
+    return { take, orderBy, filter }
   }
 
   let page: number = parseInt(history.location.search.match(/\d/g))
 
+  // get filter term
+  let queryParams = history.location.search
+  let qParamsIdx = queryParams.indexOf('filter')
+  let filterParams = qParamsIdx > -1 ? queryParams.substring(qParamsIdx) : ''
+  let filterTerm = filterParams.split('=')[1]
+
   const { data, loading, error } = useQuery(MEETUP_QUERY, {
-    variables: getQueryVariables(page)
+    variables: getQueryVariables(page, filterTerm)
   })
 
   useEffect(() => {
     setActivePage()
-    // getMeetups();
   }, []);
+
+  const searchMeetup = (filter: string) => {
+    // history.push(`?next=${page}&filter=${meetupSearchFilter
+    //   ? meetupSearchFilter : filter}`)
+    setRequestedSearch(true)
+    history.push(`?next=${page}&filter=${filter}`)
+  }
+
+  const fetchMoreMeetups = () => {
+    let url = requestedSearch
+      ? `/meetups?next=${page + 1}&filter=${meetupSearchFilter}`
+      : `/meetups?next=${page + 1}`
+    history.push(url)
+  }
 
   return (
     <>
-      <SearchNav />
+      <SearchNav searchMeetup={searchMeetup} />
 
       <section className="q-cards" id="q-cards">
         <div className="container">
@@ -75,9 +96,7 @@ const MeetupsPage = ({ meetups, getMeetups, setActivePage }) => {
 
                 {data.meetups.length > 0 &&
                   <button className="q-btn btn__centered"
-                   onClick={() => {
-                      history.push(`/meetups?next=${page + 1}`)
-                   }}>See more meetups</button>}
+                    onClick={fetchMoreMeetups}>See more meetups</button>}
               </>
           }
         </div>
@@ -88,7 +107,8 @@ const MeetupsPage = ({ meetups, getMeetups, setActivePage }) => {
 
 const mapStateToProps = ({ meetups, questions }) => ({
   meetups: meetups.data,
-  questions: questions.data
+  questions: questions.data,
+  meetupSearchFilter: meetups.search.filter
 });
 
 const mapDispatchToProps = (dispatch) => ({

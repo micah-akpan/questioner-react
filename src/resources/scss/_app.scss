@@ -132,7 +132,7 @@ section {
   top             : 0;
   left            : 0;
   width           : 100%;
-  min-height      : 80px;
+  max-height      : 80px;
   background-color: $light-forest-green;
   box-shadow      : 2px 2px 5px #777;
   z-index         : 1000;
@@ -265,7 +265,7 @@ section {
 
 .mobile-nav-sidebar__wrapper {
   position: fixed;
-  top     : 10px;
+  top     : 5px;
   right   : 5px;
   display : none;
   z-index : 9999;
@@ -413,6 +413,7 @@ section {
   text-align: center;
   margin: 0 auto;
 
+
   ul {
     li {
       display: inline-block;
@@ -487,11 +488,9 @@ section {
   }
 }
 
-.sticky-footer {
-  position: fixed;
-  left    : 0;
-  bottom  : 0;
-  width   : 100%;
+main {
+  min-height: calc(100vh - 80px);
+  margin-top: 80px;
 }
 
 @media only screen and (max-width: 768px) {

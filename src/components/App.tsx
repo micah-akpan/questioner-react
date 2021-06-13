@@ -7,15 +7,17 @@ import Header from './shared/Header';
 const App = () => (
   <>
     <Header />
-    <Router>
-      <Switch>
-        <Route path="/meetups/:id" component={MeetupDetail} />
-        <Route path="/meetups" component={Meetups} />
-        <Route path="/login" component={Login} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/" component={Home} />
-      </Switch>
-    </Router>
+    <main>
+      <Router>
+        <Switch>
+          <Route path="/meetups/:id" component={MeetupDetail} />
+          <Route path="/meetups" component={Meetups} />
+          <Route path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </Router>
+    </main>
     <Footer />
   </>
 );
