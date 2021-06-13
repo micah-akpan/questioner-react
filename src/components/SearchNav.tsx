@@ -81,7 +81,7 @@ const SearchNav = (props) => {
             >
               <form onSubmit={handleSearch}>
                 <input
-                  type="text"
+                  type="search"
                   placeholder="Search Meetups"
                   className={searchFormIsVisible ? 'show_input' : ''}
                   autoComplete="off"

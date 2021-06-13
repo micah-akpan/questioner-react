@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ContentLoader from 'react-content-loader';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +11,7 @@ import { LINKS_PER_PAGE } from '../constants';
 
 const MeetupsPage = ({ setActivePage, meetupSearchFilter }) => {
   const history = useHistory()
+  const [requestedSearch, setRequestedSearch] = useState(false)
 
   const MEETUP_QUERY = gql`
     query MeetupQuery(
@@ -41,20 +42,25 @@ const MeetupsPage = ({ setActivePage, meetupSearchFilter }) => {
   let filterTerm = filterParams.split('=')[1]
 
   const { data, loading, error } = useQuery(MEETUP_QUERY, {
-    variables: getQueryVariables(page, filterTerm),
-    onError: (error) => {
-      console.log('error: ', error.message)
-    }
+    variables: getQueryVariables(page, filterTerm)
   })
 
   useEffect(() => {
     setActivePage()
-    // getMeetups();
   }, []);
 
   const searchMeetup = (filter: string) => {
-    history.push(`?next=${page}&filter=${meetupSearchFilter
-      ? meetupSearchFilter : filter}`)
+    // history.push(`?next=${page}&filter=${meetupSearchFilter
+    //   ? meetupSearchFilter : filter}`)
+    setRequestedSearch(true)
+    history.push(`?next=${page}&filter=${filter}`)
+  }
+
+  const fetchMoreMeetups = () => {
+    let url = requestedSearch
+      ? `/meetups?next=${page + 1}&filter=${meetupSearchFilter}`
+      : `/meetups?next=${page + 1}`
+    history.push(url)
   }
 
   return (
@@ -90,9 +96,7 @@ const MeetupsPage = ({ setActivePage, meetupSearchFilter }) => {
 
                 {data.meetups.length > 0 &&
                   <button className="q-btn btn__centered"
-                    onClick={() => {
-                      history.push(`/meetups?next=${page + 1}`)
-                    }}>See more meetups</button>}
+                    onClick={fetchMoreMeetups}>See more meetups</button>}
               </>
           }
         </div>
