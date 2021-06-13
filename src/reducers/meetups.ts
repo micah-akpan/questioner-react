@@ -1,13 +1,19 @@
 import {
   GET_MEETUPS_REQUEST,
   GET_MEETUPS_SUCCESS,
-  GET_MEETUPS_FAILURE
+  GET_MEETUPS_FAILURE,
+  SEARCH_MEETUPS_REQUEST,
+  SEARCH_MEETUPS_SUCCESS
 } from '../actionTypes/meetups';
 
 const initialState = {
   data: [],
   error: null,
-  requesting: false
+  requesting: false,
+  search: {
+    requesting: true,
+    filter: ''
+  }
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -34,6 +40,27 @@ export default (state = initialState, { type, payload }) => {
         requesting: false,
         error: payload
       };
+    }
+
+    case SEARCH_MEETUPS_REQUEST: {
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          requesting: true,
+          filter: payload
+        }
+      }
+    }
+
+    case SEARCH_MEETUPS_SUCCESS: {
+      return {
+        ...state,
+        search: {
+          ...state.search,
+          requesting: false,
+        }
+      }
     }
 
     default:
