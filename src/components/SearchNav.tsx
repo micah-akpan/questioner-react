@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import searchIcon from '../resources/icons/search.svg'
 import { ListItemState } from '../shared/models'
+import { connect } from 'react-redux'
+import { searchMeetupsRequest } from '../actions/meetups'
 
 const initialState: ListItemState = {
   'list-item-1': {
@@ -11,10 +13,11 @@ const initialState: ListItemState = {
   }
 }
 
-const SearchNav = () => {
+const SearchNav = (props) => {
   let inputRef = useRef();
   const [listItemIsActive, setListItemIsActive] = useState(initialState);
   const [searchFormIsVisible, setSearchFormVisibility] = useState(false);
+  const [searchFilter, setSearchFilter] = useState('')
 
   const toggleNavLink = evt => {
     const selectedButton = evt.target.getAttribute('data-target');
@@ -35,7 +38,17 @@ const SearchNav = () => {
   useEffect(() => {
     inputRef?.current?.focus();
   }, [searchFormIsVisible])
-  
+
+  const updateSearchFilter = () => {
+    props.dispatch(searchMeetupsRequest(searchFilter))
+  }
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    props.dispatch(searchMeetupsRequest(searchFilter))
+    props.searchMeetup(searchFilter)
+  }
+
   return (
     <section
       id="q-search"
@@ -66,14 +79,18 @@ const SearchNav = () => {
               className={`search-bar__link ${searchFormIsVisible ? 'search-bar__link-show' : ''}`}
               data-testid="search-form-list-item"
             >
-              <form>
+              <form onSubmit={handleSearch}>
                 <input
                   type="search"
-                  name="search-term"
                   placeholder="Search Meetups"
                   className={searchFormIsVisible ? 'show_input' : ''}
                   autoComplete="off"
                   ref={inputRef}
+                  onClick={(e) => e.stopPropagation()}
+                  onBlur={updateSearchFilter}
+                  onChange={(e) => {
+                    setSearchFilter(e.target.value)
+                  }}
                 />
               </form>
             </li>
@@ -105,4 +122,4 @@ const SearchNav = () => {
   );
 };
 
-export default SearchNav;
+export default connect(null, null)(SearchNav);
