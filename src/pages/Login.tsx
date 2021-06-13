@@ -42,7 +42,7 @@ const LoginPage = (props) => {
       localStorage.setItem(AUTH_TOKEN, login.token)
       setLoginError('')
       setRequesting(false)
-      history.push('/meetups')
+      history.push('/meetups?next=1')
     },
     onError: (error) => {
       setRequesting(false)

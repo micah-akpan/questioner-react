@@ -1,20 +1,14 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
-import Card from './Card';
-import CardTop from './CardTop';
-import CardBottom from './CardBottom';
-import { parseDate } from '../../utils';
-import Dropdown from './Dropdown';
-import dropDownItems from '../../utils/dropdown';
+import { Link } from 'react-router-dom';
 import { getQuestions } from '../../actions/questions';
-
-interface MeetupProps {
-  meetup: any;
-  getMeetupQuestions: any;
-  questions: any;
-}
+import { MeetupProps } from '../../shared/models';
+import { parseDate } from '../../utils';
+import dropDownItems from '../../utils/dropdown';
+import Card from './Card';
+import CardBottom from './CardBottom';
+import CardTop from './CardTop';
+import Dropdown from './Dropdown';
 
 
 const getQuestionCountToolTip = (count: number): string => {
@@ -53,7 +47,7 @@ const Meetup = ({ meetup, getMeetupQuestions, questions }: MeetupProps) => {
         </CardTop>
         <CardBottom>
           <div className="content q-card__sec">
-            <p className="meetup-title">{meetup.title}</p>
+            <p className="meetup-title">{meetup.topic}</p>
             <p className="meetup-sched-date">{parseDate(meetup.happeningOn)}</p>
           </div>
         </CardBottom>

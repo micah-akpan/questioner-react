@@ -1,10 +1,5 @@
-/**
- * @function addClasses
- * @param {Array<String>} arrayOfClasses
- * @returns {String} Returns a string of class names
- * delimited by a single whitespace
- */
-const addClasses = arrayOfClasses => arrayOfClasses.join(' ');
+
+const addClasses = (arrayOfClasses: string[]) => arrayOfClasses.join(' ');
 
 /**
  * @const numMonthToStr
@@ -25,20 +20,11 @@ const numMonthToShortForm = {
   12: 'Dec'
 };
 
-/**
- * @function getMonthShortForm
- * @param {Number} month
- * @returns {String} A string version of date e.g 1 -> Jan
- */
-const getMonthShortForm = month => numMonthToShortForm[month + 1];
 
-/**
- * @function parseDate
- * @param {String} dateStr
- * @returns {String} Returns a string (short form of the month and day)
- */
-export const parseDate = dateStr => {
-  const currentDate = new Date(dateStr);
+const getMonthShortForm = (month: number) => numMonthToShortForm[month + 1];
+
+export const parseDate = (date: string) => {
+  const currentDate = new Date(date);
   const month = currentDate.getMonth();
   const monthShortForm = getMonthShortForm(month);
   const day = currentDate.getDate();

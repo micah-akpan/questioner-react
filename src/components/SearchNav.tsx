@@ -1,11 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import searchIcon from '../resources/icons/search.svg'
-
-interface ListItemState {
-  [key: string]: {
-    active: boolean
-  }
-}
+import { ListItemState } from '../shared/models'
 
 const initialState: ListItemState = {
   'list-item-1': {
