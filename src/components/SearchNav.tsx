@@ -36,7 +36,7 @@ const SearchNav = (props) => {
   });
 
   useEffect(() => {
-    inputRef?.current?.focus();
+    // inputRef?.current?.focus();
   }, [searchFormIsVisible])
 
   const updateSearchFilter = () => {
