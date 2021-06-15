@@ -1,27 +1,28 @@
-import React, { useReducer } from 'react'
-import { connect } from 'react-redux'
+import classNames from 'classnames';
+import React, { useEffect, useState } from 'react';
+import { useRef } from 'react';
+import { connect } from 'react-redux';
 import MobileNavMenu from './MobileNavMenu';
 
+const Header = ({ navState }) => {
+    const [mobileNavIsVisible, setMobileNavVisibility] = useState(false)
+    const keyRef = useRef(false)
 
-const toggleMobileNavVisibility = (event, { navIsVisible, setVisibility }) => {
-    const escapeKeyCode = 27;
-    if ((event.key === 'Escape' || event.keyCode === escapeKeyCode) && navIsVisible) {
-        setVisibility(false);
-    }
-};
+    useEffect(() => {
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                setMobileNavVisibility(false);
+            }
+        })
 
-
-const Header = (props) => {
-    const [mobileNavIsVisible, setMobileNavVisibility] = useReducer(
-        state => !state,
-        false
-    )
+        return () => window.removeEventListener('keydown', () => null)
+    }, [])
 
     return (
         <header className="app-main-header">
             <div className="container">
                 {/* Main Navigation bar */}
-                <nav className={`q-flex header-content ${props.navState.hasLeftNav ? '' : 'header__no-border'}`}>
+                <nav className={`q-flex header-content ${navState.hasLeftNav ? '' : 'header__no-border'}`}>
                     <div className="white nav-block">
                         <a href="/" className="nav-block__link main-nav-block__link">
                             <h1 className="q-logo q-logo-border">Questioner</h1>
@@ -29,7 +30,7 @@ const Header = (props) => {
                     </div>
 
                     {
-                        props.navState.hasLeftNav &&
+                        navState.hasLeftNav &&
                         <div className="left-nav q-left-nav">
                             <ul className="app-main-nav__list">
                                 <li className="app-main-nav__list__item q-left-nav__list__item">
@@ -40,21 +41,21 @@ const Header = (props) => {
                     }
 
                     {
-                        props.navState.isAuthPage ?
+                        navState.isAuthPage ?
                             <div className="right-nav q-right-nav app-main-nav">
                                 <ul className="auth-pages-nav_link">
-                                    <span>{props.navState.activePage == 'login' ? 'Not Registered Yet?' : 'Are you a member?'}
+                                    <span>{navState.activePage == 'login' ? 'Not Registered Yet?' : 'Are you a member?'}
                                         <li>
-                                            <a href={`/${props.navState.activePage == 'login' ? 'signup' : 'login'}`}>{props.navState.activePage == 'login' ? 'Sign Up' : 'Login'}</a>
+                                            <a href={`/${navState.activePage == 'login' ? 'signup' : 'login'}`}>{navState.activePage == 'login' ? 'Sign Up' : 'Login'}</a>
                                         </li>
                                     </span>
                                 </ul>
                             </div>
                             :
 
-                            <div className={`right-nav q-right-nav app-main-nav ${props.navState.activePage == 'meetupList' ? 'notify-user__nav no-flex' : ''}`}>
+                            <div className={classNames('right-nav', 'q-right-nav', 'app-main-nav', { 'notify-user__nav': navState.activePage === 'meetupList', 'no-flex': navState.activePage === 'meetupList' })}>
                                 <ul>
-                                    {props.navState.links.map(item => (
+                                    {navState.links.map((item) => (
                                         <li key={item.url}>
                                             {
                                                 item.isIcon ?
@@ -75,16 +76,10 @@ const Header = (props) => {
                     }
                 </nav>
                 <div
-                    className={`mobile-nav-sidebar__wrapper ${mobileNavIsVisible ? 'change' : ''}`}
-                    onClick={() => setMobileNavVisibility()}
-                    onKeyDown={
-                        e => {
-                            toggleMobileNavVisibility(e, {
-                                navIsVisible: mobileNavIsVisible,
-                                setVisibility: setMobileNavVisibility
-                            });
-                        }
-                    }
+                    className={classNames('mobile-nav-sidebar__wrapper', { change: mobileNavIsVisible })}
+                    onClick={() => {
+                        setMobileNavVisibility(!mobileNavIsVisible)
+                    }}
                     role="button"
                     tabIndex={0}
                     data-testid="mobile-nav-trigger-icon"
@@ -95,7 +90,7 @@ const Header = (props) => {
                 </div>
 
                 <MobileNavMenu
-                    links={props.navState.links}
+                    links={navState.links}
                     mobileNavIsVisible={mobileNavIsVisible}
                 />
             </div>

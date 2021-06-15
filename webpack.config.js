@@ -8,8 +8,10 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 const config = {
   entry: path.join(__dirname, 'src', 'index.tsx'),
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: 'app.js'
+    path: path.resolve(__dirname, 'build'),
+    filename: 'app.js',
+    clean: true,
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -59,12 +61,15 @@ const config = {
     }),
     new Dotenv()
   ],
-  devtool: 'cheap-eval-source-map',
+  devtool: isDevelopment ? 'eval-source-map' : 'source-map',
   devServer: {
     historyApiFallback: true,
     port: 5000,
     progress: true,
     open: false
+  },
+  stats: {
+    children: true
   }
 };
 
