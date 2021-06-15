@@ -22,6 +22,7 @@ const MeetupsPage = ({ setActivePage, meetupSearchFilter }) => {
       meetups(take: $take, orderBy: $orderBy, filter: $filter) {
         id
         topic
+        location
         happeningOn
       }
     }

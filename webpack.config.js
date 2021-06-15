@@ -59,7 +59,7 @@ const config = {
     }),
     new Dotenv()
   ],
-  devtool: 'cheap-eval-source-map',
+  devtool: isDevelopment ? 'eval-source-map' : 'source-map',
   devServer: {
     historyApiFallback: true,
     port: 5000,
