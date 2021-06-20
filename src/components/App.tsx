@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Home, SignUp, Login, Meetups, MeetupDetail } from '../pages';
+import { Home, Login, MeetupDetail, Meetups, SignUp } from '../pages';
 import { Footer } from './shared';
 import Header from './shared/Header';
 

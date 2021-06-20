@@ -97,7 +97,8 @@ const MeetupsPage = ({ setActivePage, meetupSearchFilter }) => {
 
                 {data.meetups.length > 0 &&
                   <button className="q-btn btn__centered"
-                    onClick={fetchMoreMeetups}>See more meetups</button>}
+                    onClick={fetchMoreMeetups}>See more meetups</button>
+                }
               </>
           }
         </div>

@@ -11,7 +11,6 @@ const config = {
     path: path.resolve(__dirname, 'build'),
     filename: 'app.js',
     clean: true,
-    publicPath: '/'
   },
   module: {
     rules: [
@@ -31,7 +30,16 @@ const config = {
       },
       {
         test: /\.(css|scss)$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: ''
+            }
+          },
+          'css-loader',
+          'sass-loader'
+        ]
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/,
@@ -39,8 +47,8 @@ const config = {
           {
             loader: 'file-loader',
             options: {
-              name: '[path][name].[ext]',
-              outputPath: 'images'
+              name: '[name].[ext]',
+              outputPath: 'images',
             },
           },
         ],

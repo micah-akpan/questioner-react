@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ListItemState } from '../shared/models'
 import { connect } from 'react-redux'
 import { searchMeetupsRequest } from '../actions/meetups'
-import searchIcon from '../resources/icons/search.svg'
+// import searchIcon from '../resources/icons/search.svg';
 import classNames from 'classnames'
 
 const initialState: ListItemState = {
@@ -15,7 +15,7 @@ const initialState: ListItemState = {
 }
 
 const SearchNav = (props) => {
-  let inputRef = useRef();
+  let inputRef = useRef<HTMLInputElement>();
   const [listItemIsActive, setListItemIsActive] = useState(initialState);
   const [searchFormIsVisible, setSearchFormVisibility] = useState(false);
   const [searchFilter, setSearchFilter] = useState('')
@@ -37,9 +37,7 @@ const SearchNav = (props) => {
   });
 
   useEffect(() => {
-    if (inputRef?.current) {
-      inputRef.current.focus()
-    }
+    inputRef.current?.focus()
   }, [searchFormIsVisible])
 
   const updateSearchFilter = () => {
@@ -72,7 +70,7 @@ const SearchNav = (props) => {
                 data-testid="search-icon"
               >
                 <img
-                  src={searchIcon}
+                  src="/src/resources/icons/search.svg"
                   alt="A magnifying glass icon"
                 />
               </button>
