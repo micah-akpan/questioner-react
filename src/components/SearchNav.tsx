@@ -1,33 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ListItemState } from '../shared/models'
-import { connect } from 'react-redux'
-import { searchMeetupsRequest } from '../actions/meetups'
 // import searchIcon from '../resources/icons/search.svg';
-import classNames from 'classnames'
-
-const initialState: ListItemState = {
-  'list-item-1': {
-    active: false
-  },
-  'list-item-2': {
-    active: false
-  }
-}
+import classNames from 'classnames';
+import { useEffect, useRef, useState } from 'react';
+import { connect } from 'react-redux';
+import { searchMeetupsRequest } from '../actions/meetups';
 
 const SearchNav = (props) => {
   let inputRef = useRef<HTMLInputElement>();
-  const [listItemIsActive, setListItemIsActive] = useState(initialState);
+  const [activeNavItem, setActiveNavItem] = useState('');
   const [searchFormIsVisible, setSearchFormVisibility] = useState(false);
   const [searchFilter, setSearchFilter] = useState('')
-
-  const toggleNavLink = evt => {
-    const selectedButton = evt.target.getAttribute('data-target');
-    setListItemIsActive({
-      [selectedButton]: {
-        active: true
-      }
-    });
-  };
 
   useEffect(() => {
     addEventListener('click', () => {
@@ -101,10 +82,9 @@ const SearchNav = (props) => {
               <button
                 type="button"
                 className={
-                  classNames({ 'active_link': listItemIsActive['list-item-1']?.active })
+                  classNames({ 'active_link': activeNavItem === 'all' })
                 }
-                data-target="list-item-1"
-                onClick={toggleNavLink}
+                onClick={() => setActiveNavItem('all')}
               >
                 All
                 </button>
@@ -114,9 +94,9 @@ const SearchNav = (props) => {
               <button
                 type="button"
                 data-target="list-item-2"
-                onClick={toggleNavLink}
+                onClick={() => setActiveNavItem('favorites')}
                 className={
-                  classNames({ 'active_link': listItemIsActive['list-item-2']?.active })}>
+                  classNames({ 'active_link': activeNavItem === 'favorites' })}>
                 Favorites
                 </button>
             </li>

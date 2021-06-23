@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { connect } from 'react-redux';
 import MobileNavMenu from './MobileNavMenu';

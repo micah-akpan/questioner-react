@@ -26,7 +26,12 @@ const config = {
       },
       {
         test: /\.tsx?$/,
-        loader: 'ts-loader',
+        use: {
+          loader: 'ts-loader',
+          options: {
+            configFile: isDevelopment ? 'tsconfig.json' : 'tsconfig.prod.json'
+          }
+        }
       },
       {
         test: /\.(css|scss)$/,

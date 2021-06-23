@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { setActivePage } from '../actions/nav';
 import { gql, useApolloClient } from '@apollo/client'

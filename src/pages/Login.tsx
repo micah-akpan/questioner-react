@@ -1,6 +1,6 @@
 /* eslint-disable */
 import { gql, useMutation } from '@apollo/client';
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import Validator from 'validatorjs';

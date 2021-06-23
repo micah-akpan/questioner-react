@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Home, Login, MeetupDetail, Meetups, SignUp } from '../pages';
 import { Footer } from './shared';

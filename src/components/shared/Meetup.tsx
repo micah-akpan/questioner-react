@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getQuestions } from '../../actions/questions';
-import { MeetupProps } from '../../shared/models';
 import { parseDate } from '../../utils';
 import dropDownItems from '../../utils/dropdown';
 import Card from './Card';
@@ -18,7 +17,7 @@ const getQuestionCountToolTip = (count: number): string => {
   return `${count} ${count > 1 ? 'questions' : 'question'} have been asked in this meetup`
 }
 
-const Meetup = ({ meetup, getMeetupQuestions, questions }: MeetupProps) => {
+const Meetup = ({ meetup, getMeetupQuestions, questions }) => {
   useEffect(() => {
     getMeetupQuestions(meetup.id);
   }, []);

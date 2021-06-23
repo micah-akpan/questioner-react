@@ -3,7 +3,8 @@
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "Node",
     "module": "ESnext",
-    "jsx": "react",
+    "target": "ES2015",
+    "jsx": "react-jsxdev",
     "lib": ["ES2015", "DOM", "DOM.Iterable"],
     "sourceMap": true
   },

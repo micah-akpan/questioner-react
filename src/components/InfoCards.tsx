@@ -1,5 +1,3 @@
-import React from 'react';
-
 const InfoCards = ({ cards }) => (
   <div className="cards q-flex">
     {cards.map(card => (
