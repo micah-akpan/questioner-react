@@ -1,11 +1,11 @@
 /* eslint-disable */
-import React, { useState, useCallback, useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { gql, useMutation } from '@apollo/client';
+import { useCallback, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { signInUser } from '../actions/auth';
+import { Link, useHistory } from 'react-router-dom';
 import Validator from 'validatorjs';
+import { signInUser } from '../actions/auth';
 import { setActivePage } from '../actions/nav';
-import { gql, useMutation } from '@apollo/client'
 import { AUTH_TOKEN } from '../constants';
 
 const rules = {
@@ -63,7 +63,7 @@ const LoginPage = (props) => {
   useEffect(() => {
     const token = localStorage.getItem(AUTH_TOKEN)
     if (token) {
-      history.push('/meetups')
+      history.push('/meetups?next=1')
     }
   })
 

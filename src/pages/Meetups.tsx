@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import ContentLoader from 'react-content-loader';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -97,7 +97,8 @@ const MeetupsPage = ({ setActivePage, meetupSearchFilter }) => {
 
                 {data.meetups.length > 0 &&
                   <button className="q-btn btn__centered"
-                    onClick={fetchMoreMeetups}>See more meetups</button>}
+                    onClick={fetchMoreMeetups}>See more meetups</button>
+                }
               </>
           }
         </div>

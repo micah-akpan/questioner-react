@@ -1,10 +1,8 @@
-import React from 'react';
-
 const Footer = () => (
   <footer className="app-footer">
     <div className="container">
       <div className="app-footer__content">
-        <p className="copyright">&copy; Questioner 2018</p>
+        <p className="copyright">&copy; Questioner {new Date().getFullYear()}</p>
         <section className="footer-sec__links">
           <ul>
             <li><a href="#!">Terms of service</a></li>

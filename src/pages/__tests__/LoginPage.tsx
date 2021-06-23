@@ -1,32 +1,31 @@
-import React from 'react';
 import { render, fireEvent, getByTestId } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import configureMockStore from 'redux-mock-store';
 import mockStoreData from '../../__mocks__/store';
-import LoginPage from '../LoginPage';
+import Login from '../Login';
 
 const mockStore = configureMockStore([thunk]);
 const store = mockStore(mockStoreData);
 
-describe('LoginPage Component', () => {
-  test('it renders <LoginPage />', () => {
-    const loginPage = render(
+describe('Login Component', () => {
+  test('it renders <Login />', () => {
+    const LoginPage = render(
       <Provider store={store}>
         <Router>
-          <LoginPage />
+          <Login />
         </Router>
       </Provider>
     );
-    expect(loginPage).toBeTruthy();
+    expect(LoginPage).toBeTruthy();
   });
 
   test('it toggles password visibility', () => {
     const { getByTestId, container } = render(
       <Provider store={store}>
         <Router>
-          <LoginPage />
+          <Login />
         </Router>
       </Provider>
     );
@@ -40,7 +39,7 @@ describe('LoginPage Component', () => {
     const { getByPlaceholderText, getByText } = render(
       <Provider store={store}>
         <Router>
-          <LoginPage />
+          <Login />
         </Router>
       </Provider>
     );
@@ -57,7 +56,7 @@ describe('LoginPage Component', () => {
     const { getByPlaceholderText, getByText, container } = render(
       <Provider store={store}>
         <Router>
-          <LoginPage />
+          <Login />
         </Router>
       </Provider>
     );

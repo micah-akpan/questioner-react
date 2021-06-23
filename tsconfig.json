@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "allowSyntheticDefaultImports": true,
-    "allowUmdGlobalAccess": true,
     "moduleResolution": "Node",
-    "module": "ES2015",
-    "jsx": "react",
+    "module": "ESnext",
+    "target": "ES2015",
+    "jsx": "react-jsxdev",
     "lib": ["ES2015", "DOM", "DOM.Iterable"],
     "sourceMap": true
   },

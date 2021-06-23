@@ -1,32 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import searchIcon from '../resources/icons/search.svg'
-import { ListItemState } from '../shared/models'
-import { connect } from 'react-redux'
-import { searchMeetupsRequest } from '../actions/meetups'
-
-const initialState: ListItemState = {
-  'list-item-1': {
-    active: false
-  },
-  'list-item-2': {
-    active: false
-  }
-}
+// import searchIcon from '../resources/icons/search.svg';
+import classNames from 'classnames';
+import { useEffect, useRef, useState } from 'react';
+import { connect } from 'react-redux';
+import { searchMeetupsRequest } from '../actions/meetups';
 
 const SearchNav = (props) => {
-  let inputRef = useRef();
-  const [listItemIsActive, setListItemIsActive] = useState(initialState);
+  let inputRef = useRef<HTMLInputElement>();
+  const [activeNavItem, setActiveNavItem] = useState('');
   const [searchFormIsVisible, setSearchFormVisibility] = useState(false);
   const [searchFilter, setSearchFilter] = useState('')
-
-  const toggleNavLink = evt => {
-    const selectedButton = evt.target.getAttribute('data-target');
-    setListItemIsActive({
-      [selectedButton]: {
-        active: true
-      }
-    });
-  };
 
   useEffect(() => {
     addEventListener('click', () => {
@@ -36,7 +18,7 @@ const SearchNav = (props) => {
   });
 
   useEffect(() => {
-    // inputRef?.current?.focus();
+    inputRef.current?.focus()
   }, [searchFormIsVisible])
 
   const updateSearchFilter = () => {
@@ -69,21 +51,22 @@ const SearchNav = (props) => {
                 data-testid="search-icon"
               >
                 <img
-                  src={searchIcon}
+                  src="/src/resources/icons/search.svg"
                   alt="A magnifying glass icon"
                 />
               </button>
             </li>
 
             <li
-              className={`search-bar__link ${searchFormIsVisible ? 'search-bar__link-show' : ''}`}
+              className={classNames('search-bar__link',
+                { 'search-bar__link-show': searchFormIsVisible })}
               data-testid="search-form-list-item"
             >
               <form onSubmit={handleSearch}>
                 <input
                   type="search"
                   placeholder="Search Meetups"
-                  className={searchFormIsVisible ? 'show_input' : ''}
+                  className={classNames({ 'show_input': searchFormIsVisible })}
                   autoComplete="off"
                   ref={inputRef}
                   onClick={(e) => e.stopPropagation()}
@@ -98,9 +81,10 @@ const SearchNav = (props) => {
             <li>
               <button
                 type="button"
-                className={listItemIsActive['list-item-1'] && listItemIsActive['list-item-1'].active ? 'active_link' : ''}
-                data-target="list-item-1"
-                onClick={toggleNavLink}
+                className={
+                  classNames({ 'active_link': activeNavItem === 'all' })
+                }
+                onClick={() => setActiveNavItem('all')}
               >
                 All
                 </button>
@@ -110,8 +94,9 @@ const SearchNav = (props) => {
               <button
                 type="button"
                 data-target="list-item-2"
-                onClick={toggleNavLink}
-                className={listItemIsActive['list-item-2'] && listItemIsActive['list-item-2'].active ? 'active_link' : ''}>
+                onClick={() => setActiveNavItem('favorites')}
+                className={
+                  classNames({ 'active_link': activeNavItem === 'favorites' })}>
                 Favorites
                 </button>
             </li>
