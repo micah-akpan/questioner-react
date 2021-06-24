@@ -13,11 +13,11 @@
     "react-content-loader": "^6.0.3",
     "react-dom": "17.0.0",
     "react-redux": "^7.0.3",
-    "react-router": "^5.2.0",
     "react-router-dom": "5.2.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "styled-components": "^5.3.0",
     "validatorjs": "^3.15.1"
   },
   "devDependencies": {

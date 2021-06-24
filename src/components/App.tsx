@@ -1,13 +1,19 @@
+import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Home, Login, MeetupDetail, Meetups, SignUp } from '../pages';
-import { Footer } from './shared';
-import Header from './shared/Header';
+
+const Home = lazy(() => import('../pages/Home'))
+const Login = lazy(() => import('../pages/Login'))
+const MeetupDetail = lazy(() => import('../pages/MeetupDetail'))
+const Meetups = lazy(() => import('../pages/Meetups'))
+const SignUp = lazy(() => import('../pages/SignUp'))
+const Header = lazy(() => import('./shared/Header'))
+const Footer = lazy(() => import('./shared/Footer'))
 
 const App = () => (
-  <>
-    <Header />
-    <main>
-      <Router>
+  <Suspense fallback={<p>Loading content....</p>}>
+    <Router>
+      <Header />
+      <main>
         <Switch>
           <Route path="/meetups/:id" component={MeetupDetail} />
           <Route path="/meetups" component={Meetups} />
@@ -15,10 +21,10 @@ const App = () => (
           <Route path="/signup" component={SignUp} />
           <Route path="/" component={Home} />
         </Switch>
-      </Router>
-    </main>
-    <Footer />
-  </>
+      </main>
+      <Footer />
+    </Router>
+  </Suspense>
 );
 
 export default App;

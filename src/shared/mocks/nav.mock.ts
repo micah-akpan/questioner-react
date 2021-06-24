@@ -18,7 +18,7 @@ export const pageToNavItems = {
     meetupList: [
         {
             icon: '',
-            url: '',
+            url: '/notification',
             title: 'notification',
             isIcon: true,
             iconSrc: 'src/resources/icons/notifications-button.svg',
@@ -27,7 +27,7 @@ export const pageToNavItems = {
 
         {
             icon: '',
-            url: '',
+            url: '/profile',
             title: 'profile',
             isIcon: true,
             iconSrc: 'src/resources/icons/avatar1.svg',
