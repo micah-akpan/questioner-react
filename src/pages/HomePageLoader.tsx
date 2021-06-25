@@ -1,4 +1,3 @@
-import React from 'react';
 import ContentLoader from 'react-content-loader';
 
 const HomePage = props => (
@@ -27,13 +26,5 @@ const HomePage = props => (
     <rect x="343" y="270" rx="0" ry="0" width="141" height="38" />
   </ContentLoader>
 );
-
-
-HomePage.metadata = {
-  name: 'JAvlonbek Rakhimberdiev', // My name
-  github: 'RJavlonbek', // Github username
-  description: 'This is a placeholder for the home page of my Fintech project', // Little tagline
-  filename: 'HomePage', // filename of your loader
-};
 
 export default HomePage;

@@ -1,11 +1,12 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Dotenv = require('dotenv-webpack');
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
 const config = {
+  mode: process.env.NODE_ENV,
   entry: path.join(__dirname, 'src', 'index.tsx'),
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -72,7 +73,10 @@ const config = {
       filename: isDevelopment ? '[name].css' : '[name].[hash].css',
       chunkFilename: isDevelopment ? '[id].css' : '[id].[hash].css'
     }),
-    new Dotenv()
+    new webpack.EnvironmentPlugin({
+      DEV_API_PORT: 4000,
+      NODE_ENV: process.env.NODE_ENV
+    })
   ],
   devtool: isDevelopment ? 'eval-source-map' : 'source-map',
   devServer: {
