@@ -3,31 +3,30 @@
 */
 @import url("https://fonts.googleapis.com/css?family=Aleo|Marck+Script|Roboto");
 
-$white-hex          : #fff;
-$dark-forest-green  : #07504c;
-$light-forest-green : #116466;
-$light-orange-color : #ffcb9a;
-
+$white-hex: #fff;
+$dark-forest-green: #07504c;
+$light-forest-green: #116466;
+$light-orange-color: #ffcb9a;
 
 html {
   font: 15px/1.5 Roboto, Helvetica, sans-serif;
 }
 
 body {
-  margin          : 0 auto;
-  padding         : 0;
-  color           : #555;
-  overflow        : auto;
+  margin: 0 auto;
+  padding: 0;
+  color: #555;
+  overflow: auto;
   background-color: #fafafa;
-  display         : flex;
-  flex-direction  : column;
-  height          : 100vh;
-  justify-content : space-between;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
 }
 
 .container {
-  width   : 80%;
-  margin  : 0 auto;
+  width: 80%;
+  margin: 0 auto;
   overflow: hidden;
 
   @media screen and (max-width: 768px) {
@@ -42,17 +41,17 @@ h3 {
 
 a {
   text-decoration: none;
-  color          : #555;
+  color: #555;
 }
 
 ul {
   list-style: none;
-  margin    : 0;
-  padding   : 0;
+  margin: 0;
+  padding: 0;
 }
 
 button {
-  border : none;
+  border: none;
   outline: none;
 }
 
@@ -70,9 +69,9 @@ section {
 
 .q-btn {
   background-color: #116466;
-  color           : $white-hex;
-  padding         : 10px;
-  cursor          : pointer;
+  color: $white-hex;
+  padding: 10px;
+  cursor: pointer;
 
   &:hover {
     background-color: #07504c;
@@ -104,9 +103,9 @@ section {
 }
 
 .text__large {
-  font-size     : 1em;
+  font-size: 1em;
   text-transform: uppercase;
-  font-weight   : 600;
+  font-weight: 600;
 }
 
 .text__small {
@@ -123,19 +122,20 @@ section {
 
 .btn__centered {
   display: block;
-  margin : 0 auto;
+  margin: 0 auto;
 }
 
 /* App Main Header */
 .app-main-header {
-  position        : fixed;
-  top             : 0;
-  left            : 0;
-  width           : 100%;
-  max-height      : 80px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: $navbar-height;
+  min-height: $navbar-height;
   background-color: $light-forest-green;
-  box-shadow      : 2px 2px 5px #777;
-  z-index         : 1000;
+  box-shadow: 2px 2px 5px #777;
+  z-index: 1000;
 
   .header-content {
     display: flex;
@@ -162,38 +162,38 @@ section {
 
 // App Brand logo
 .q-logo {
-  padding       : 0;
-  margin-top    : 20px;
-  font-family   : "Marck Script", cursive;
+  padding: 0;
+  margin-top: 20px;
+  font-family: "Marck Script", cursive;
   text-transform: capitalize;
 }
 
 .q-logo-border {
   &::after {
-    content    : "|";
-    padding    : 0 20px;
-    color      : $dark-forest-green;
+    content: "|";
+    padding: 0 20px;
+    color: $dark-forest-green;
     font-family: Roboto, sans-serif;
   }
 }
 
 .app-main-nav {
   margin-top: 28px;
-  position  : relative;
+  position: relative;
 }
 
 .app-main-nav__list__item {
-  display    : inline-block;
+  display: inline-block;
   margin-left: 2px;
   font-weight: 600;
 }
 
 .main-nav-block__link {
-  display       : inline-block;
+  display: inline-block;
   text-transform: uppercase;
-  color         : $white-hex;
-  transition    : color 0.2s;
-  font-weight   : 600;
+  color: $white-hex;
+  transition: color 0.2s;
+  font-weight: 600;
 
   &:link {
     color: $white-hex;
@@ -206,7 +206,7 @@ section {
 
 /* Left Nav */
 .q-left-nav {
-  flex  : 1 1 100%;
+  flex: 1 1 100%;
   margin: 2em 0;
 }
 
@@ -216,7 +216,7 @@ section {
 
 .q-left-nav__list__item__link {
   text-transform: uppercase;
-  margin-top    : 5px;
+  margin-top: 5px;
 }
 
 /* Right Nav */
@@ -224,23 +224,18 @@ section {
   width: 100%;
 
   ul {
-    display : flex;
+    display: flex;
     position: absolute;
-    top     : 0;
-    right   : 10px;
+    top: 0;
+    right: 10px;
 
-    span {
-      margin-right: 5px;
+    & + li {
+      a {
+        text-transform: uppercase;
+        color: #fff;
 
-      &+li {
-
-        a {
-          text-transform: uppercase;
-          color         : #fff;
-
-          &:hover {
-            color: #ffcb9a;
-          }
+        &:hover {
+          color: #ffcb9a;
         }
       }
     }
@@ -249,7 +244,7 @@ section {
 
 .notify-user__nav {
   button {
-    width : 38px;
+    width: 38px;
     height: 38px;
 
     img {
@@ -261,24 +256,25 @@ section {
 // Mobile menu
 
 /* Custom Menu Trigger Button */
-.mobile-nav-sidebar {}
+.mobile-nav-sidebar {
+}
 
 .mobile-nav-sidebar__wrapper {
   position: fixed;
-  top     : 5px;
-  right   : 5px;
-  display : none;
-  z-index : 9999;
-  padding : 1em;
-  cursor  : pointer;
-  outline : 0;
+  top: 5px;
+  right: 5px;
+  display: none;
+  z-index: 9999;
+  padding: 1em;
+  cursor: pointer;
+  outline: 0;
 
   div {
-    width           : 30px;
-    height          : 5px;
+    width: 30px;
+    height: 5px;
     background-color: #aaa;
-    margin          : 6px 0;
-    transition      : all 0.4s;
+    margin: 6px 0;
+    transition: all 0.4s;
 
     &:last-child {
       width: 25px;
@@ -289,9 +285,9 @@ section {
 .change {
   .menu-bar1 {
     -webkit-transform: rotate(-45deg) translate(-9px, 6px);
-    -moz-transform   : rotate(-45deg) translate(-9px, 6px);
-    -ms-transform    : rotate(-45deg) translate(-9px, 6px);
-    transform        : rotate(-45deg) translate(-9px, 6px);
+    -moz-transform: rotate(-45deg) translate(-9px, 6px);
+    -ms-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
   }
 
   .menu-bar2 {
@@ -300,7 +296,7 @@ section {
 
   .menu-bar3 {
     -webkit-transform: rotate(45deg) translate(-8px, -8px);
-    transform        : rotate(45deg) translate(-8px -8px);
+    transform: rotate(45deg) translate(-8px -8px);
   }
 }
 
@@ -311,14 +307,14 @@ section {
     padding: 1rem 0;
 
     button {
-      padding   : 1rem;
-      cursor    : pointer;
+      padding: 1rem;
+      cursor: pointer;
       background: transparent;
     }
 
     img {
-      width         : 25px;
-      height        : 25px;
+      width: 25px;
+      height: 25px;
       vertical-align: middle;
     }
   }
@@ -327,16 +323,16 @@ section {
     width: 0;
 
     input[type="search"] {
-      background   : transparent;
-      margin-left  : -15px;
-      border       : none;
+      background: transparent;
+      margin-left: -15px;
+      border: none;
       border-bottom: 1.5px solid #aaa;
-      outline      : none;
-      padding      : 1rem 0;
-      box-sizing   : content-box;
-      color        : #333333;
-      width        : 0;
-      transition   : width 0.3s ease-in;
+      outline: none;
+      padding: 1rem 0;
+      box-sizing: content-box;
+      color: #333333;
+      width: 0;
+      transition: width 0.3s ease-in;
     }
 
     .show_input {
@@ -356,26 +352,26 @@ section {
 
 /* Mobile Nav Menu */
 .mobile-nav-menu__wrapper {
-  position  : fixed;
-  top       : 50px;
-  right     : 0;
+  position: fixed;
+  top: 50px;
+  right: 0;
   background: $light-forest-green;
-  display   : none;
+  display: none;
   transition: display 0.2s;
-  width     : 100%;
-  color     : black;
-  z-index   : 9998;
+  width: 100%;
+  color: black;
+  z-index: 9998;
 
   .q-sidenav__menu {
     width: 100%;
 
     li {
-      display       : block;
-      width         : 100%;
+      display: block;
+      width: 100%;
       text-transform: uppercase;
-      padding       : 20px 20px 20px 10px;
-      text-align    : right;
-      cursor        : pointer;
+      padding: 20px 20px 20px 10px;
+      text-align: right;
+      cursor: pointer;
 
       &:first-of-type {
         padding-top: 40px;
@@ -386,11 +382,11 @@ section {
       }
 
       a {
-        width        : 90%;
-        color        : $white-hex;
-        display      : inline-block;
+        width: 90%;
+        color: $white-hex;
+        display: inline-block;
         border-bottom: 2px solid #cccccc;
-        padding      : 5px 0;
+        padding: 5px 0;
 
         &:hover {
           color: #ffcb9a;
@@ -406,31 +402,30 @@ section {
 
 /* Footer */
 .app-footer {
-  width     : 100%;
-  padding   : 10px 24px;
+  width: 100%;
+  padding: 10px 24px;
   background: #fafafa;
-  font-size : 0.8em;
+  font-size: 0.8em;
   text-align: center;
   margin: 0 auto;
-
 
   ul {
     li {
       display: inline-block;
       padding: 0;
-      margin : 0;
+      margin: 0;
     }
   }
 
   .app-footer__content {
     display: flex;
-    width  : 100%;
+    width: 100%;
   }
 
   .copyright {
-    margin    : 0;
-    color     : #777;
-    flex      : 1 0 25%;
+    margin: 0;
+    color: #777;
+    flex: 1 0 25%;
     text-align: left;
   }
 
@@ -452,12 +447,12 @@ section {
 
   .footer-sec__social-media {
     margin: 0;
-    color : #777;
-    flex  : 1 1 25%;
+    color: #777;
+    flex: 1 1 25%;
 
     li {
-      width       : 25px;
-      height      : 25px;
+      width: 25px;
+      height: 25px;
       margin-right: 10px;
     }
 
@@ -467,30 +462,29 @@ section {
   }
 
   .social-media__links {
-
     li {
       a {
-        width  : 100%;
+        width: 100%;
         display: flex !important;
       }
 
       img {
         display: block;
-        width  : 30px;
-        height : 30px;
+        width: 30px;
+        height: 30px;
       }
 
       span {
         display: block;
-        flex   : 2 0 auto;
+        flex: 2 0 auto;
       }
     }
   }
 }
 
 main {
-  min-height: calc(100vh - 80px);
-  margin-top: 80px;
+  min-height: calc(100vh - 70px);
+  margin-top: 70px;
 }
 
 @media only screen and (max-width: 768px) {
@@ -526,7 +520,7 @@ main {
     }
 
     .copyright {
-      text-align   : center;
+      text-align: center;
       margin-bottom: 10px;
     }
   }

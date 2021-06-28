@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
+import { lazy, useEffect, Suspense } from 'react';
 import { connect } from 'react-redux';
 import appUtil from '../utils';
-import {
-  UpcomingMeetups,
-  ShowCase,
-  InfoCards,
-} from '../components';
 import { setActivePage } from '../actions/nav';
 import { Link } from 'react-router-dom';
+import HomePageLoader from './HomePageLoader'
 
 const { cards1, cards2 } = appUtil;
+
+const ShowCase = lazy(() => import('../components/ShowCase'))
+const UpcomingMeetups = lazy(() => import('../components/UpcomingMeetups'))
+const InfoCards = lazy(() => import('../components/InfoCards'))
 
 const HomePage = ({ dispatch }) => {
   useEffect(() => {
@@ -17,7 +17,7 @@ const HomePage = ({ dispatch }) => {
   }, []);
 
   return (
-    <>
+    <Suspense fallback={<HomePageLoader />}>
       <ShowCase />
       <UpcomingMeetups />
 
@@ -41,7 +41,7 @@ const HomePage = ({ dispatch }) => {
           <Link to="/signup" className="q-btn btn-get-started" role="button">Get started now</Link>
         </div>
       </section>
-    </>
+    </Suspense>
   );
 };
 

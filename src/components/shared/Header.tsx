@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRef } from 'react';
 import { connect } from 'react-redux';
 import MobileNavMenu from './MobileNavMenu';
+import { Link } from 'react-router-dom'
 
 const Header = ({ navState }) => {
     const [mobileNavIsVisible, setMobileNavVisibility] = useState(false)
@@ -44,11 +45,12 @@ const Header = ({ navState }) => {
                         navState.isAuthPage ?
                             <div className="right-nav q-right-nav app-main-nav">
                                 <ul className="auth-pages-nav_link">
-                                    <span>{navState.activePage == 'login' ? 'Not Registered Yet?' : 'Are you a member?'}
-                                        <li>
-                                            <a href={`/${navState.activePage == 'login' ? 'signup' : 'login'}`}>{navState.activePage == 'login' ? 'Sign Up' : 'Login'}</a>
-                                        </li>
-                                    </span>
+                                    <li className="white">
+                                        {navState.activePage == 'login' ? 'Not Registered Yet?' : 'Are you a member?'}
+                                        <Link to={`/${navState.activePage == 'login' ? 'signup' : 'login'}`}>
+                                            {navState.activePage == 'login' ? 'Sign Up' : 'Login'}
+                                        </Link>
+                                    </li>
                                 </ul>
                             </div>
                             :
@@ -67,7 +69,7 @@ const Header = ({ navState }) => {
                                                         <img src={item.iconSrc} alt={item.iconDesc} />
                                                     </button>
                                                     :
-                                                    <a href={item.url} role="button" aria-label={`${item.title} button`} className={item.className}>{item.title}</a>
+                                                    <Link to={item.url} role="button" aria-label={`${item.title} button`} className={item.className}>{item.title}</Link>
                                             }
                                         </li>
                                     ))}

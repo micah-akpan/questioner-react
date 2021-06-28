@@ -5,6 +5,7 @@ import MobileNavMenu from './MobileNavMenu';
 import Footer from './Footer';
 import Meetup from './Meetup';
 import Dropdown from './Dropdown';
+import Container from './Container'
 
 export {
   Card,
@@ -13,5 +14,6 @@ export {
   MobileNavMenu,
   Footer,
   Meetup,
-  Dropdown
+  Dropdown,
+  Container
 };
