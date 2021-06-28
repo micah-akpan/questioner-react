@@ -12,6 +12,7 @@ const config = {
     path: path.resolve(__dirname, 'build'),
     filename: 'app.js',
     clean: true,
+    assetModuleFilename: 'static/[hash][ext][query]'
   },
   module: {
     rules: [
@@ -48,17 +49,16 @@ const config = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'images',
-            },
-          },
-        ],
+        test: /\.(png|jpe?g|gif)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'images/[name].[hash][ext][query]'
+        }
       },
+      {
+        test: /\.svg$/,
+        type: 'asset/inline'
+      }
     ]
   },
   resolve: {

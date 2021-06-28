@@ -32,7 +32,17 @@ export const pageToNavItems = {
             isIcon: true,
             iconSrc: 'src/resources/icons/avatar1.svg',
             iconDesc: 'An outline of a person\'s face'
-        }
+        },
+
+        {
+            icon: '',
+            url: '/logout',
+            title: 'Sign Out',
+            isIcon: true,
+            iconSrc: 'src/resources/icons/avatar1.svg',
+            iconDesc: 'An outline of a person\'s face'
+        },
+        
     ],
     meetupDetail: [
         {
@@ -51,7 +61,15 @@ export const pageToNavItems = {
             isIcon: true,
             iconSrc: 'src/resources/icons/avatar1.svg',
             iconDesc: 'An outline of a person\'s face'
-        }
+        },
+        {
+            icon: '',
+            url: '/logout',
+            title: 'Sign Out',
+            isIcon: true,
+            iconSrc: 'src/resources/icons/avatar1.svg',
+            iconDesc: 'An outline of a person\'s face'
+        },
     ],
     root: [
         {
